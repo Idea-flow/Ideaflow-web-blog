@@ -1,0 +1,83 @@
+.hidden-content {
+  position: relative;
+  margin: 1.5rem 0;
+  padding: 1.2rem 1.5rem;
+  background: linear-gradient(135deg, #f6f0ff 0%, #f0f7ff 100%);
+  border: 1px solid rgba(167, 139, 250, 0.2);
+  border-radius: 8px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 6px -1px rgba(167, 139, 250, 0.1);
+
+  // 添加锁定图标
+  &::before {
+    content: '';
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 24px;
+    height: 24px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='rgba(139, 92, 246, 0.6)'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z'/%3E%3C/svg%3E");
+    opacity: 0.8;
+    transition: transform 0.3s ease;
+  }
+
+  // 内容模糊效果
+  &::after {
+    content: '🔒 此处为隐藏内容，订阅后可见';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #8b5cf6;
+    font-weight: 500;
+    white-space: nowrap;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+
+  // 内容区域
+  > * {
+    filter: blur(6px);
+    user-select: none;
+    pointer-events: none;
+    opacity: 0.3;
+    transition: all 0.3s ease;
+  }
+
+  // 悬停效果
+  &:hover {
+    border-color: rgba(167, 139, 250, 0.4);
+    box-shadow: 0 6px 12px -2px rgba(167, 139, 250, 0.15);
+
+    &::before {
+      transform: scale(1.1) rotate(-5deg);
+    }
+
+    &::after {
+      color: #7c3aed;
+    }
+  }
+
+  // 点击效果
+  &:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 4px -1px rgba(167, 139, 250, 0.1);
+  }
+}
+
+// 暗色主题适配
+[data-theme='dark'] .hidden-content {
+  background: linear-gradient(135deg, rgba(167, 139, 250, 0.1) 0%, rgba(99, 102, 241, 0.1) 100%);
+  border-color: rgba(167, 139, 250, 0.2);
+
+  &::after {
+    color: #a78bfa;
+  }
+
+  &:hover {
+    border-color: rgba(167, 139, 250, 0.3);
+
+    &::after {
+      color: #c4b5fd;
+    }
+  }
+}

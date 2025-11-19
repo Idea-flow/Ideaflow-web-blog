@@ -1,0 +1,71 @@
+.myCustom-theme {
+
+    h1,
+    h2,
+    h2,
+    h3,
+    h4 {
+      margin-top: 30px ;
+      margin-bottom: 20px ;
+    }
+
+    h2 {
+      padding-left: 40px ;
+    }
+
+    h3 {
+      padding-left: 20px ;
+      font-size: 22px ;
+      padding-bottom: 8px ;
+      border-bottom: 1px dashed #ddd ;
+    }
+
+    h4 {
+      padding-left: 20px ;
+      font-size: 20px ;
+    }
+
+    h5 {
+      font-size: 18px ;
+      padding-left: 28px ;
+    }
+    h1:before {
+      content: "🌺" ;
+      position: absolute ;
+      left: -10 ;
+      font-size: 1.03em ;
+      margin-left: -2px ;
+    }
+
+    h2:before {
+      content: "🌺" ;
+      position: absolute ;
+      left: 0 ;
+      font-size: 1.03em ;
+      margin-top: -2px ;
+    }
+
+    h3:before {
+      content: "#" ;
+      left: 0 ;
+      position: absolute ;
+      margin-top: 2px ;
+      color: #ff6d6d ;
+    }
+
+    h4:before {
+      content: "▌";
+      left: 0 ;
+      position: absolute ;
+      color: #ff6d6d ;
+    }
+
+    h5:before {
+      content: "🌷" ;
+      left: 0 ;
+      position: absolute ;
+    }
+
+
+
+}

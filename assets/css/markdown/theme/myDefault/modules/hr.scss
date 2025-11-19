@@ -1,0 +1,11 @@
+@use '../scss-vars' as *;
+
+
+.#{$theme-name} {
+  hr {
+    height: 1px;
+    margin: 10px 0;
+    border: none;
+    border-top: 1px solid var(--md-theme-border-color);
+  }
+}

@@ -1,0 +1,19 @@
+
+.img-nine-layout {
+    display: flex;
+    flex-wrap: wrap; /* 允许换行 */
+    margin: -5px; /* 抵消子元素的外边距 */
+}
+
+.img-nine-layout img {
+    width: calc(33.333% - 10px); /* 三列布局，减去间距 */
+    margin: 5px; /* 图片之间的间距 */
+    object-fit: cover;
+    cursor: pointer; /* 添加手型光标 */
+    transition: all 0.3s ease;
+}
+
+.img-nine-layout img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}

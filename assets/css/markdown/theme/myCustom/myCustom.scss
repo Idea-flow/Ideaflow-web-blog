@@ -1,0 +1,31 @@
+
+// 使用 @use 替代 @import
+@use 'scss-vars' as * ;
+
+@use "./modules/code";
+@use "./modules/heading";
+@use "./modules/hr";
+@use "./modules/image";
+@use "./modules/link";
+@use "./modules/paragraph";
+@use "./modules/quote";
+@use "./modules/table";
+@use "./modules/hiden-content";
+
+@mixin theme-vars($isDark) {
+  div.#{$theme-name} {
+    --md-theme-color: #{if($isDark, #c9d1d9, #222)};
+  }
+}
+
+// 亮模式
+.#{$prefix} {
+  @include theme-vars(false);
+}
+
+// 暗模式
+.#{$prefix}-dark {
+  @include theme-vars(true);
+}
+
+

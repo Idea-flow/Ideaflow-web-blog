@@ -1,0 +1,82 @@
+@use '../scss-vars' as *;
+
+
+// 定义链接主题变量
+@mixin link-vars($isDark) {
+  div.#{$theme-name} {
+    // 链接基础颜色
+    --md-theme-link-color: #{if($isDark, #a78bfa, #8b5cf6)};
+    // 链接悬停颜色
+    --md-theme-link-hover-color: #{if($isDark, #c4b5fd, #7c3aed)};
+    // 链接下划线颜色
+    --md-theme-link-underline-color: #{if($isDark, rgba(167, 139, 250, 0.3), rgba(139, 92, 246, 0.3))};
+  }
+}
+
+// 应用亮色主题
+.#{$prefix} {
+  @include link-vars(false);
+}
+
+div.#{$theme-name} {
+  a {
+    // 基础链接样式
+    color: var(--md-theme-link-color);
+    position: relative;
+    text-decoration: none;
+    padding: 0 2px;  // 为下划线动画添加内边距
+    transition: color 0.3s ease;
+
+    // 为所有链接添加新窗口打开的属性
+    &:not([target]) {
+      &::after {
+        content: "↗";
+        display: inline-block;
+        margin-left: 3px;
+        font-size: 0.9em;
+        opacity: 0.6;
+        transition: opacity 0.2s ease;
+      }
+    }
+
+    // 移除原有的 target="_blank" 选择器，改为通用样式 添加外部链接图标
+    &::after {
+      content: "↗";
+      display: inline-block;
+      margin-left: 3px;
+      font-size: 0.9em;
+      opacity: 0.6;
+      transition: opacity 0.2s ease;
+    }
+
+    // 悬停状态
+    &:hover {
+      color: var(--md-theme-link-hover-color);
+
+      // 外部链接图标悬停效果
+      &[target="_blank"]::after {
+        opacity: 1;
+      }
+    }
+
+    // 装饰性下划线
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: var(--md-theme-link-underline-color);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.3s ease;
+    }
+
+    // 下划线悬停动画
+    &:hover::before {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+  }
+}

@@ -1,0 +1,61 @@
+@use '../scss-vars' as *;
+.#{$prefix}-preview {
+  p {
+    // 隐藏空段落
+    &:empty {
+      display: none;
+    }
+
+    // 段落基础样式
+    margin: 1.5em 0;
+    line-height: 1.8;
+    font-size: 1.05em;
+    //color: #2c3e50; 使用外部默认的
+    letter-spacing: 0.01em;
+    font-weight: 400;
+
+    // 优化文本渲染
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    // 段落间距优化
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    // 段落过渡效果
+    transition: color 0.2s ease;
+
+    // 段落内链接样式
+    a {
+      color: #6366f1;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: all 0.2s ease;
+
+      &:hover {
+        border-bottom-color: currentColor;
+      }
+    }
+
+    // 段落内重点标记
+    strong {
+      color: #1a202c;
+      font-weight: 600;
+    }
+
+    // 段落内代码
+    code {
+      background-color: rgba(99, 102, 241, 0.1);
+      padding: 0.2em 0.4em;
+      border-radius: 3px;
+      font-size: 0.9em;
+      color: #6366f1;
+    }
+  }
+}

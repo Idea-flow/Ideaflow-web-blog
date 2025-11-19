@@ -1,0 +1,35 @@
+@use '../scss-vars' as *;
+// 定义链接主题变量
+@mixin link-vars($isDark) {
+  div.#{$theme-name} {
+    //--md-theme-link-color: #42b983;
+    // 链接基础颜色
+    --md-theme-link-color: #{if($isDark, #a78bfa, #8b5cf6)};
+    // 链接悬停颜色
+    --md-theme-link-hover-color: #{if($isDark, #c4b5fd, #7c3aed)};
+    // 链接下划线颜色
+    --md-theme-link-underline-color: #{if($isDark, rgba(167, 139, 250, 0.3), rgba(139, 92, 246, 0.3))};
+  }
+}
+
+.#{$prefix} {
+  @include link-vars(false);
+}
+
+div.#{$theme-name} {
+  a {
+    font-weight: 600;
+  }
+}
+
+//// 定义链接主题变量
+//@mixin link-vars($isDark) {
+//  div.#{$theme-name} {
+//    // 链接基础颜色
+//    --md-theme-link-color: #{if($isDark, #a78bfa, #8b5cf6)};
+//    // 链接悬停颜色
+//    --md-theme-link-hover-color: #{if($isDark, #c4b5fd, #7c3aed)};
+//    // 链接下划线颜色
+//    --md-theme-link-underline-color: #{if($isDark, rgba(167, 139, 250, 0.3), rgba(139, 92, 246, 0.3))};
+//  }
+//}
