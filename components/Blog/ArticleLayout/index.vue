@@ -48,7 +48,8 @@ const handlePageChange = async (page: number) => {
   <div>
 <!--    <ArticleLayoutClassics :articles="articles" />-->
 <!--    <BlogArticleLayoutCard :articles="articles" />-->
-    <BlogArticleLayoutCardMy :articles="articles" :show-view-count="false"/>
+<!--    <BlogArticleLayoutCardMy :articles="articles" :show-view-count="false"/>-->
+    <BlogArticleLayoutCardAsmrAd :articles="articles" :show-view-count="false"/>
 
     <BasePagination
         v-if="total > pageSize"

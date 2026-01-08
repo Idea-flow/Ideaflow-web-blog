@@ -3,10 +3,25 @@
 import {createMarkdownItImgNineLayoutPlugin} from "assets/js/markdown-it-plugin/img-nine-layout-plugin";
 import Comment from '~/components/Blog/Article/CommentMy/Comment.vue'
 import CryptoJS from 'crypto-js';
+import MyMessage from "~/components/Base/Message/MyMessage";
+import { idToCode, codeToId } from '~/utils/BvIdUtils';
 
 import { useAppStore } from '~/stores/app'
 const route = useRoute()
-const routeArticleId = Number(route.params.id)
+
+const routeArticleIdString = String(route.params.id)
+// const routeArticleId = String(route.params.id)
+// 如果 route.params.id 为空
+if (!routeArticleIdString ) {
+  MyMessage.error('资源无效，请返回重试');
+  throw new Error('地址无效，请返回重试');
+}
+let routeArticleId = 0
+if (routeArticleIdString.startsWith('BV')){
+  routeArticleId = codeToId(routeArticleIdString)
+}else {
+  routeArticleId = Number(routeArticleIdString)
+}
 
 // 获取用户状态
 const userStore = useAppStore()
