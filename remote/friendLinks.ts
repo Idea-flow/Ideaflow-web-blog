@@ -1,5 +1,5 @@
-import { request } from '~/utils/request'
-import type {CreateCommentParams} from "~/remote/comment";
+import { request } from '~~/utils/request'
+import type {CreateCommentParams} from "~~/remote/comment";
 
 // 响应接口定义
 export interface GetAllRes {

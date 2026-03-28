@@ -1,5 +1,5 @@
-import { request } from '~/utils/request'
-import type {ListFriendMessageRes} from "~/remote/im/ImChatUserMessage";
+import { request } from '~~/utils/request'
+import type {ListFriendMessageRes} from "~~/remote/im/ImChatUserMessage";
 export interface GroupMessageDTO {
 
     groupId: number;

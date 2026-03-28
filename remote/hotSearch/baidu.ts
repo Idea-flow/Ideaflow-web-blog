@@ -1,4 +1,4 @@
-import { ApiResponse } from '~/types/commonHotSearch'
+import { ApiResponse } from '~~/types/commonHotSearch'
 import { useFetch } from '#app'
 
 interface BaiduHotSearchRes {

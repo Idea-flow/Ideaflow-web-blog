@@ -1,4 +1,4 @@
-import type { NavLink } from '~/types/nav'
+import type { NavLink } from '~~/types/nav'
 
 type NavData = {
   title: string //分类标题

@@ -1,5 +1,5 @@
 import { useFetch } from '#app'
-import {ApiResponse} from "~/types/commonHotSearch";
+import {ApiResponse} from "~~/types/commonHotSearch";
 
 /**
  * @description 获取HTML图片信息服务

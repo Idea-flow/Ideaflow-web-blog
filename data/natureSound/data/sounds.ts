@@ -6,7 +6,7 @@ import { places } from './sounds/places';
 import { transport } from './sounds/transport';
 import { things } from './sounds/things';
 import { noise } from './sounds/noise';
-import { NatureSoundCategories } from "~/types/natureSound"
+import { NatureSoundCategories } from "~~/types/natureSound"
 
 
 export const sounds: {

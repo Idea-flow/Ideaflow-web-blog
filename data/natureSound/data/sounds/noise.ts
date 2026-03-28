@@ -1,4 +1,4 @@
-import { NatureSoundCategory } from "~/types/natureSound"
+import { NatureSoundCategory } from "~~/types/natureSound"
 
 
 export const noise: NatureSoundCategory = {

@@ -1,6 +1,6 @@
-import { ApiResponse } from '~/types/commonHotSearch'
+import { ApiResponse } from '~~/types/commonHotSearch'
 
-import { request } from '~/utils/request'
+import { request } from '~~/utils/request'
 interface weiBoRes {
     ok: number // 1 is ok
     data: {

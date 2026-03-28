@@ -1,4 +1,4 @@
-import { request } from '~/utils/request'
+import { request } from '~~/utils/request'
 
 // 通用响应类型
 export interface BaseResponse<T = any> {

@@ -1,6 +1,6 @@
 // 交通运输
 
-import { NatureSoundCategory } from "~/types/natureSound"
+import { NatureSoundCategory } from "~~/types/natureSound"
 
 
 export const transport: NatureSoundCategory = {

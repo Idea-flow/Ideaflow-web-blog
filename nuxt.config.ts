@@ -44,19 +44,19 @@ export default defineNuxtConfig({
     customCollections: [
       {
         prefix: 'my',
-        dir: './assets/myIcons'
+        dir: './app/assets/myIcons'
       },
       {
         prefix: 'myVideo',
-        dir: './assets/myIcons/video'
+        dir: './app/assets/myIcons/video'
       },
       {
         prefix: 'myBase',
-        dir: './assets/myIcons/base'
+        dir: './app/assets/myIcons/base'
       },
       {
         prefix: 'myNatureSound',
-        dir: './assets/myIcons/nature-sound'
+        dir: './app/assets/myIcons/nature-sound'
       },
     ],
   },
@@ -98,7 +98,7 @@ export default defineNuxtConfig({
   pwa: {
     registerType: 'autoUpdate', // 注册 service worker 自动更新
     strategies: sw ? 'injectManifest' : 'generateSW',
-    srcDir: sw ? 'service-worker' : undefined,
+    srcDir: sw ? '../service-worker' : undefined,
     filename: sw ? 'sw.ts' : undefined,
     // PWA 配置
     manifest: {
@@ -201,7 +201,7 @@ export default defineNuxtConfig({
       ],
     },
     devOptions: {
-      enabled: true,
+      enabled: false,
       suppressWarnings: true,
       navigateFallback: '/',
       navigateFallbackAllowlist: [/^\/$/],

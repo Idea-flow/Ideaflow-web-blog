@@ -1,4 +1,4 @@
-import { ApiResponse } from '~/types/commonHotSearch'
+import { ApiResponse } from '~~/types/commonHotSearch'
 
 interface LinuxdoHotSearchRes {
   topic_list: {

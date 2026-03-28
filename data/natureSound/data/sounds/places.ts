@@ -1,6 +1,6 @@
 //地点
 
-import { NatureSoundCategory } from "~/types/natureSound"
+import { NatureSoundCategory } from "~~/types/natureSound"
 
 export const places: NatureSoundCategory = {
     icon: "myNatureSound:place",
