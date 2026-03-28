@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { CommentApi } from '~~/types/comment'
+import type { CommentApi } from '~~/shared/types/comment'
 
 interface Props {
   comments: CommentApi[]

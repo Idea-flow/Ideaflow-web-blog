@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { getAll } from '~~/remote/friendLinks'
+import { getAll } from '~/services/friendLinks'
 
 // http://localhost:3005/study/FriendLinksDemo
 // 使用 useAsyncData 获取数据

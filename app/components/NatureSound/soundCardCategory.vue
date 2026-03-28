@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { NatureSoundCategory } from "~~/types/natureSound"
+import { NatureSoundCategory } from "~~/shared/types/natureSound"
 import SoundCard from "~/components/NatureSound/soundCard.vue"
 import { computed, onMounted, ref } from 'vue'
 

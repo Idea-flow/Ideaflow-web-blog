@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {socialLogin} from "~~/remote/auth";
+import {socialLogin} from "~/services/auth";
 import {useAppStore} from "~/stores/app";
 import {navigateTo} from "#app";
 import MyMessage from "~/components/Base/Message/MyMessage";

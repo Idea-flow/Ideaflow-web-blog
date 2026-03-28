@@ -14,7 +14,7 @@ const emit = defineEmits<{
 // 抽屉容器引用
 const drawerRef = ref<HTMLElement | null>(null)
 
-import { findGroupMembers } from '~~/remote/im/ImChatGroup'
+import { findGroupMembers } from '~/services/im/ImChatGroup'
 
 // 群成员数据
 const members = ref([])

@@ -2,7 +2,7 @@
 import { navigateTo } from '#app'
 import {useBlogStore} from "~/stores/blog";
 import CryptoJS from 'crypto-js';
-import { idToCode, codeToId } from '~~/utils/BvIdUtils';
+import { idToCode, codeToId } from '~~/shared/utils/BvIdUtils';
 
 // 定义 props
 const props = defineProps<{

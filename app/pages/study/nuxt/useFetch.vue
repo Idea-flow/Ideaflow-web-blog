@@ -1,5 +1,5 @@
 <script setup >
-import { getArticlePage,getArticleById } from '~~/remote/article.js'
+import { getArticlePage,getArticleById } from '~/services/article'
 
 // 调用文章列表接口
 // const { data } = await getArticlePage()

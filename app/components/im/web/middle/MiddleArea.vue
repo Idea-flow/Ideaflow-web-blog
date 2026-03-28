@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import {getTag} from "~~/remote/tag";
-import {findChatList, getAllContactInfo} from "~~/remote/imChat";
+import {getTag} from "~/services/tag";
+import {findChatList, getAllContactInfo} from "~/services/imChat";
 
 import RecentChatList from "~/components/im/web/middle/RecentChatList.vue";
 import { useImStore } from '~/stores/ImStore'

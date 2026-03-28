@@ -1,5 +1,5 @@
 import { defineEventHandler, getQuery, sendProxy } from 'h3';
-import { decodeBase64URL } from '~~/utils/proxyPicture';
+import { decodeBase64URL } from '~~/shared/utils/proxyPicture';
 
 export default defineEventHandler(async (event) => {
   const { url: img, type = "encodeURIComponent" } = getQuery(event);

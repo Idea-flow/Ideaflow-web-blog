@@ -2,7 +2,7 @@
 import {useCounterStore} from "~/stores/counter";
 import {useImSsrStore} from "~/stores/ImSsrStore";
 import {useCookie} from "#app";
-import {getAllContactInfo} from "~~/remote/imChat";
+import {getAllContactInfo} from "~/services/imChat";
 
 const store = useCounterStore();
 

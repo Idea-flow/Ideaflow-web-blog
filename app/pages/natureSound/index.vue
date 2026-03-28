@@ -159,7 +159,7 @@ const handleVolumeControlToggle = (value: boolean) => {
           </BaseDropdownItem>
           <BaseDropdownItem>
     <client-only>
-<!--      nuxt3  在服务端渲染的时候 isVolumeControlEnabled会是false,-->
+<!--      Nuxt 4 在服务端渲染的时候 isVolumeControlEnabled 会是 false,-->
 
       <div class="flex items-center justify-between">
         <span>开启音量控制</span>

@@ -69,7 +69,7 @@ useSeoMeta({
 })
 
 
-import { getArticleById } from '~~/remote/article'
+import { getArticleById } from '~/services/article'
 
 import { MdPreview, MdCatalog,config } from 'md-editor-v3';
 import { createMarkdownItNewWindowPlugin } from '~/assets/js/markdown-it-plugin/a-new-window-plugin.js';
@@ -125,8 +125,8 @@ if (import.meta.server) {
 
  /*评论组件开始*/
 // 评论组件引用
-import type { CommentApi } from '~~/types/comment'
-import { getCommentPage, createComment } from '~~/remote/comment'
+import type { CommentApi } from '~~/shared/types/comment'
+import { getCommentPage, createComment } from '~/services/comment'
 import CommentList from "~/components/Blog/Article/CommentMy/Comment.vue";
 import FixedActionBar from "~/components/Base/FixedActionBar/index.vue";
 import {navigateTo} from "#app";

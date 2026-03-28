@@ -174,6 +174,14 @@ export default defineNuxtConfig({
   },
   //
   vite: {
+    optimizeDeps: {
+      include: [
+        'md-editor-v3',
+        'xgplayer',
+        'xgplayer-hls',
+        'xgplayer/es/plugins/danmu',
+      ]
+    },
     server: {
       // 允许的主机名列表
       allowedHosts: [

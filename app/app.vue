@@ -14,7 +14,7 @@ import {useCookie} from "#app";
 const isShow = ref(true)
 
 
-import {getAllConfig} from "~~/remote/blogConfig.js";
+import {getAllConfig} from "~/services/blogConfig";
 import {computed, ref} from "vue";
 
 const appStore = useAppStore()

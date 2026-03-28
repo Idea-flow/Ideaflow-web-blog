@@ -2,7 +2,7 @@
 import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAppStore } from '~/stores/app'
-import { login, register, getVerificationCode, socialAuthRedirect } from '~~/remote/auth'
+import { login, register, getVerificationCode, socialAuthRedirect } from '~/services/auth'
 import GithubIcon from '~/assets/myIcons/github.svg'
 import GoogleIcon from '~/assets/myIcons/google.svg'
 import MyMessage from "~/components/Base/Message/MyMessage";

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { CommentApi } from '~~/types/comment'
-import { getCommentPage, createComment } from '~~/remote/comment'
+import type { CommentApi } from '~~/shared/types/comment'
+import { getCommentPage, createComment } from '~/services/comment'
 
 // 分页参数
 const pageNo = ref(1)

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { getArticlePage } from '~~/remote/article'
+import { getArticlePage } from '~/services/article'
 
 // 文章列表数据
 const articles = ref([])

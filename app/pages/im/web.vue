@@ -4,7 +4,7 @@ import {computed, onMounted} from "vue";
 import MiddleArea from "~/components/im/web/middle/MiddleArea.vue";
 import Sidebar from "~/components/im/web/left/Sidebar.vue";
 import ChatArea from "~/components/im/web/right/ChatArea.vue";
-import {findChatList, getAllContactInfo} from "~~/remote/imChat";
+import {findChatList, getAllContactInfo} from "~/services/imChat";
 const imStore = useImStore()
 // 当前选中的导航项
 // const activeNav = ref('chat')

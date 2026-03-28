@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { getRecommendArticle } from '~~/remote/article'
-import { getTag } from '~~/remote/tag'
+import { getRecommendArticle } from '~/services/article'
+import { getTag } from '~/services/tag'
 
 const { data: recommendArticles } = await getRecommendArticle()
 const { data: tagResponse } = await getTag()

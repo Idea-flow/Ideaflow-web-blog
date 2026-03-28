@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { proxyPicture } from '~~/utils/proxyPicture';
+import { proxyPicture } from '~~/shared/utils/proxyPicture';
 
 interface HotSearchItem {
   id: string

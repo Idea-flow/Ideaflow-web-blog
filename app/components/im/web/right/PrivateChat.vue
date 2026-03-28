@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {computed, ref} from 'vue'
-import {imChatPrivateMessageSend, listFriendMessage, type SendMessageRes} from "~~/remote/im/ImChatUserMessage";
+import {imChatPrivateMessageSend, listFriendMessage, type SendMessageRes} from "~/services/im/ImChatUserMessage";
 import ChatInput from './ChatInput.vue'
 import MessageDisplay from './MessageDisplay.vue'
 

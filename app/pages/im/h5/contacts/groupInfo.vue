@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {computed, ref} from 'vue'
-import {findGroupByGroupId} from "~~/remote/im/ImChatGroup";
+import {findGroupByGroupId} from "~/services/im/ImChatGroup";
 
 const imStore = useImStore()
 const currentChat = computed(() => imStore.currentChat)

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
-import {createFile, getFilePresignedUrl} from "~~/remote/file";
+import {createFile, getFilePresignedUrl} from "~/services/file";
 import CryptoJS from "crypto-js";
 
 const emit = defineEmits<{

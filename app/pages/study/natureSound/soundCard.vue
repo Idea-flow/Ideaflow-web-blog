@@ -1,6 +1,6 @@
 <script setup lang="ts">
 //http://localhost:3005/study/natureSound/soundCard
-import { NatureSoundCategory } from "~~/types/natureSound"
+import { NatureSoundCategory } from "~~/shared/types/natureSound"
 import Naturesound from "~/components/NatureSound/soundCard.vue"
 import SoundCardCategory from "~/components/NatureSound/soundCardCategory.vue"
 import { ref } from "vue"

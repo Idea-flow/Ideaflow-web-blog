@@ -1,11 +1,28 @@
 <script setup lang="ts">
-
-
 const colorMode = useColorMode()
+const isHydrated = ref(false)
 
-
+/**
+ * 切换主题模式，统一更新 Nuxt Color Mode 的偏好值。
+ */
 const setTheme = (theme: string) => {
   colorMode.preference = theme
+}
+
+/**
+ * 判断当前主题项是否处于激活状态。
+ * 为了避免 SSR 与客户端读取本地主题偏好不一致，在挂载前统一返回 false。
+ */
+const isThemeActive = (theme: string) => {
+  if (!isHydrated.value) {
+    return false
+  }
+
+  if (theme === 'system' || theme === 'light' || theme === 'dark') {
+    return colorMode.preference === theme
+  }
+
+  return colorMode.value === theme
 }
 
 interface Props {
@@ -14,6 +31,10 @@ interface Props {
 
 const props = withDefaults(defineProps<Props>(), {
   placement: 'bottom'
+})
+
+onMounted(() => {
+  isHydrated.value = true
 })
 
 </script>
@@ -27,7 +48,7 @@ const props = withDefaults(defineProps<Props>(), {
     </slot>
    
     <template #dropdown>
-      <BaseDropdownItem @click="setTheme('system')" :active="$colorMode.preference === 'system'">
+      <BaseDropdownItem @click="setTheme('system')" :active="isThemeActive('system')">
         <div class="flex items-center space-x-2">
 <!--          {{$colorMode.preference}}-->
 <!--          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">-->
@@ -43,7 +64,7 @@ const props = withDefaults(defineProps<Props>(), {
           <span>系统模式</span>
         </div>
       </BaseDropdownItem>
-      <BaseDropdownItem @click="setTheme('light')" :active="$colorMode.preference === 'light'">
+      <BaseDropdownItem @click="setTheme('light')" :active="isThemeActive('light')">
         <div class="flex items-center space-x-2" >
 <!--          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">-->
 <!--            <circle cx="12" cy="12" r="4"/>-->
@@ -61,7 +82,7 @@ const props = withDefaults(defineProps<Props>(), {
           <span>明亮模式</span>
         </div>
       </BaseDropdownItem>
-      <BaseDropdownItem @click="setTheme('dark')" :active="$colorMode.preference === 'dark'">
+      <BaseDropdownItem @click="setTheme('dark')" :active="isThemeActive('dark')">
         <div class="flex items-center space-x-2">
 <!--          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">-->
 <!--            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>-->
@@ -70,7 +91,7 @@ const props = withDefaults(defineProps<Props>(), {
           <span>暗黑模式</span>
         </div>
       </BaseDropdownItem>
-      <BaseDropdownItem @click="setTheme('spring')" :active="$colorMode.value === 'spring'">
+      <BaseDropdownItem @click="setTheme('spring')" :active="isThemeActive('spring')">
         <div class="flex items-center space-x-2">
 <!--          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">-->
 <!--            <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 2a8 8 0 0 1 8 8 8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8z"/>-->
@@ -82,7 +103,7 @@ const props = withDefaults(defineProps<Props>(), {
           <span>春季主题</span>
         </div>
       </BaseDropdownItem>
-      <BaseDropdownItem @click="setTheme('summer')" :active="$colorMode.value === 'summer'">
+      <BaseDropdownItem @click="setTheme('summer')" :active="isThemeActive('summer')">
         <div class="flex items-center space-x-2">
 <!--          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">-->
 <!--            <circle cx="12" cy="12" r="4"/>-->
@@ -99,14 +120,14 @@ const props = withDefaults(defineProps<Props>(), {
           <span>夏季主题</span>
         </div>
       </BaseDropdownItem>
-      <BaseDropdownItem @click="setTheme('autumn')" :active="$colorMode.value === 'autumn'">
+      <BaseDropdownItem @click="setTheme('autumn')" :active="isThemeActive('autumn')">
         <div class="flex items-center space-x-2">
           <img class="h-4 w-4" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAAEg0lEQVR4nO2YXWgcVRTH/yUF0Uh98KGoFKSC+CCi+AVFq4KRoFR3rBG0WvyqxNJoraFqa7/EaJu2qTHp3jspfbD60EaQ0oKopQ9qS30SRPyq+KCyszG0zWbdj2y3yV/uzOx2djIzO+nONlvYA/dlzmXv73/uOefevUDTmta0WTcOo4UC/WhEo447KfCir38QV1LgECWIRjQK9FCgQInFHr7rKPGDgm9cARK/mIACI9yNBeXvOu6mRLIE35ACOIQbnYBmtAdwLXU8TYmcy9eAAiTedEMGDTSaUeLEJSuAOq6hxORMBNCj0GfNqOOVINipwRCCBPZHAzOAqymw1Qf0AQrcNe27wFdBcMWdVQWcZD/mRSNAxyI7ItNEUOAbSnzsmn+V3fu9ox8Hz24LjHyeQ7g1Engb8jnHAtscoA/Z3ya4B/Md85cFRTe/xRJBvzk6XooM3gbqcUWoVwFT4HvH93WO+cNBAv5bG5g6n0YKbwJJfBaig/zNTZhLHVdQIO03r/C+tQM+/t/U3ageAn4M1QYF9lPgi6A5Yyt90yfH3bglevg4bg4qyJmM4g5wbJWv+BXRQUsciALYPc50goUPPH0HIoMv933XTfEC+njFONsLjj5rRtrt+yOyfl8hQkcsCCi3GTz3YXgBp1eA2fUevjjujRy+LELgEz8gBT++BpwccER5u7eoiR5w5Emf60Mcj9ot+WHq2ECJgxT4jsSc2gWoE1W1R79d2GSLUGACTHd75LiwUkf5Qqec8L62XJgIgTYKTHktpNrh+OuWiOxGq8O4rwiZt8BkR+VOVR1x3BaZAFOExF6/xQrbwVSXBZ96rbLHF/vA5BNges0MO5aOB6MV0I95FPirogZ2gbmNYOpVC94cXVZalTrNqRes3HdHf/IjMLuhqpAzlDimnlsosJxxLKxNhER7RRvts2Az68H8u2Bh63kx6TfA8dWgoYGZt13wg5ZPiWf4mpiiQHdtAgSur7bQuX6rWE+/bMGr6CuBSpzyTQlHrfSGFlBUO1AbvI6bKPFTmAVVeow8ZQlQQsrp5RxdVl2ku8H02oAzRSBLHY/UGvnlFMiEgVcFfOp5C16lkxKj2qoCzL4DZtbZxd5lnQ3FPs+T+XwN6LinJng7+jdQopMSn1MgVe2uo+BHl/kcWgJMrQ55JsRxe83w08RY9/1FFNhMgeNmftoLloo2uTQ4v3NbrHMjxI7eEbmAaYL2oVX17LGV+FbBq6FSpVqahWihtNtofZ9ZCMwxYthVgh99Bl9S4s/Q7VFWbZ/5yP8fl+E70GJo2FuCNzQc5H2Yy5243E6xfBXACQoYlPiZAkcosc88tNRzpGocEktUHZhvqcNoiRR+ZAnmJ2I4WoaP4euT7bisQmAcCylx2Ae+HbNlxuNYnIjBcMAfS7ah1W++GUlXWmE2LNmG1kQMOxIaio60ORQEXzJ3WuFiW/Ix3G9o+N0BriK/R+X8TH6nlFa4mJbQ0OsCzxsxdOJSsYSGjAP+13+W1uHtpp6W0PBeQkPa0DD0b0cdXs2a1rSmoRb7H1jK55Sfbg7zAAAAAElFTkSuQmCC" alt="autumn">
           <span>秋季主题</span>
         </div>
 
       </BaseDropdownItem>
-      <BaseDropdownItem @click="setTheme('winter')" :active="$colorMode.value === 'winter'">
+      <BaseDropdownItem @click="setTheme('winter')" :active="isThemeActive('winter')">
         <div class="flex items-center space-x-2">
 <!--          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">-->
 <!--            <path d="M12 3l1.5 1.5L12 6l-1.5-1.5L12 3z"/>-->

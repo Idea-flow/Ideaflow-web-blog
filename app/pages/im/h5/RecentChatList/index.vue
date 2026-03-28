@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {useImStore} from "~/stores/ImStore";
 import {computed} from "vue";
-import {findChatList} from "~~/remote/imChat";
+import {findChatList} from "~/services/imChat";
 
 const imStore = useImStore()
 const groupList = computed(() => imStore.groupList)

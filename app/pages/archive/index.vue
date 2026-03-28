@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import {archive} from "~~/remote/article";
+import {archive} from "~/services/article";
 import {ref} from "vue";
-import {getAll} from "~~/remote/friendLinks";
+import {getAll} from "~/services/friendLinks";
 
 
 

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
-import { getHtmlImgInfo } from "~~/remote/html/getImgInfo";
+import { getHtmlImgInfo } from "~/services/html/getImgInfo";
 
 useHead({
   title: '网页图片提取工具 - 一键获取网站所有图片',

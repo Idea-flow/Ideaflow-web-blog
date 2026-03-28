@@ -29,7 +29,7 @@
 
 ### 2.2 当前目录结构特征
 
-当前项目仍然是典型的 Nuxt 3 根目录结构，核心目录位于项目根目录：
+升级前，项目是典型的 Nuxt 3 根目录结构；当前已完成 `app/` 目录迁移，核心应用代码已进入 `app/`：
 
 - `app.vue`
 - `error.vue`
@@ -338,7 +338,7 @@ shared/utils/
 app/services/
 ```
 
-4. 迁移：
+4. 规范化目标：
 
 ```text
 types/   -> shared/types/
@@ -360,14 +360,17 @@ remote/  -> app/services/
 
 **当前项目实践补充**：
 
-- 当前项目并没有在这一步同步迁走 `remote/`、`utils/`、`types/`、`data/`。
-- 因此实际落地时，需要把这些仍然留在项目根目录的引用改为 `~~/`：
-  - `~/remote/...` -> `~~/remote/...`
-  - `~/utils/...` -> `~~/utils/...`
-  - `~/types/...` -> `~~/types/...`
-  - `~/data/...` -> `~~/data/...`
-- 这个规则不仅适用于 `app/` 里的页面和组件，也适用于根目录下还在继续被使用的 `remote/`、`server/`、`data/` 等模块内部引用。
-- 否则构建时会错误地去寻找 `app/remote`、`app/utils`、`app/types` 等路径。
+- 本项目最初确实先通过 `~~/` 保留了根目录引用，以确保 `app/` 迁移后先恢复构建。
+- 当前项目已继续做了一步“渐进式规范化”：
+  - 新增 `app/services/` 作为应用层请求入口
+  - 新增 `shared/types/` 作为共享类型入口
+  - 新增 `shared/utils/` 作为前后端共用工具入口
+- 当前推荐写法变为：
+  - `~/services/...`
+  - `~~/shared/types/...`
+  - `~~/shared/utils/...`
+- 为降低迁移风险，根目录原有的 `remote/`、`types/`、`utils/` 中关键文件暂时保留为兼容桥接层。
+- 因此现阶段不要再新增 `~~/remote/...`、`~~/types/...`、`~~/utils/BvIdUtils`、`~~/utils/proxyPicture` 这类新引用。
 
 ### 5.3.2 迁移后需要重点修正的配置
 
@@ -517,6 +520,7 @@ const isDev = import.meta.dev
 
 - 构建找不到模块
 - 客户端与服务端混用边界不清
+- 同一项目中同时存在新旧 import 风格，后续维护成本升高
 
 ### 6.3 动态路由改名后的跳转风险
 
@@ -589,6 +593,12 @@ const isDev = import.meta.dev
 - `remote/` 统一改为 `app/services/`
 - `types/` / `utils/` 向 `shared/` 规范化
 - 使用路由分组整理 `study`、`tools`、`im` 等大区块
+
+**当前项目实践补充**：
+
+- `app/services/` 已建立并作为应用层的首选请求入口
+- `shared/types/`、`shared/utils/` 已建立并开始接管共享类型与通用工具
+- 根目录旧目录目前仍保留少量兼容桥接文件，用于平滑过渡
 
 ## 9. 输出结果
 

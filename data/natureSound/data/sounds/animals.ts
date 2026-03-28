@@ -1,4 +1,4 @@
-import { NatureSoundCategory } from "~~/types/natureSound"
+import { NatureSoundCategory } from "~~/shared/types/natureSound"
 
 
 export const animals: NatureSoundCategory = {

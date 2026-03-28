@@ -1,4 +1,4 @@
-import { proxyPicture } from '~~/utils/proxyPicture'
+import { proxyPicture } from '~~/shared/utils/proxyPicture'
 
 interface Res {
   data: {

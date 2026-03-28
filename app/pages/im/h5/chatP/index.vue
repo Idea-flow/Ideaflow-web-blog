@@ -2,7 +2,7 @@
 
 // console.log("测试页面是否只在客户端渲染")
 import {computed, ref} from 'vue'
-import {imChatPrivateMessageSend, listFriendMessage} from "~~/remote/im/ImChatUserMessage";
+import {imChatPrivateMessageSend, listFriendMessage} from "~/services/im/ImChatUserMessage";
 import ChatInput from '~/components/im/web/right/ChatInput.vue'
 import MessageDisplay from '~/components/im/web/right/MessageDisplay.vue'
 

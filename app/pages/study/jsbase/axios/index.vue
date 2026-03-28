@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import * as FileApi from '~~/remote/file'
+import * as FileApi from '~/services/file'
 import CryptoJS from 'crypto-js';
 // 1.1 生成文件名称
 const fileName = await generateStringName("test")

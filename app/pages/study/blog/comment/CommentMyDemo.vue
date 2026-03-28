@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { CommentApi } from '~~/types/comment'
+import type { CommentApi } from '~~/shared/types/comment'
 import CommentList from '~/components/Blog/Article/CommentMy/Comment.vue'
 
 // 模拟评论数据

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {computed, ref} from 'vue'
-import {imChatGroupMessageSend, imChatUserGroupMessageListGroupMessage} from "~~/remote/im/ImChatGroupMessage";
+import {imChatGroupMessageSend, imChatUserGroupMessageListGroupMessage} from "~/services/im/ImChatGroupMessage";
 import ChatInput from './ChatInput.vue'
 import MessageDisplay from './MessageDisplay.vue'
 import GroupMembersDrawer from './group/GroupMembersDrawer.vue'

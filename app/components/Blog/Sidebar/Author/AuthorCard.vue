@@ -6,7 +6,7 @@ const profile = ref({
   avatar: 'https://oss.ideaflow.top/configImg/default-avatar2.webp',
   name: 'Ideaflow',
   title: '',
-  bio: '使用nuxt3,springboot生态系统的开发。喜欢分享技术经验~',
+  bio: '使用nuxt4,springboot生态系统的开发。喜欢分享技术经验~',
   location: '',
   social: [
     {

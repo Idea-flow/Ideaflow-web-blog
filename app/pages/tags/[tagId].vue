@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { getArticlePage } from '~~/remote/article'
+import { getArticlePage } from '~/services/article'
 
 // 获取路由参数
 const route = useRoute()

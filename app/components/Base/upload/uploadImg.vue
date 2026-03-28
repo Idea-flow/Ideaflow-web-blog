@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
-import { getFilePresignedUrl } from '~~/remote/file'
+import { getFilePresignedUrl } from '~/services/file'
 import CryptoJS from 'crypto-js'
 
 const props = defineProps({

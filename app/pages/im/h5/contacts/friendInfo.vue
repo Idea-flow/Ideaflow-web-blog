@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { findFriendByFriendId, modifyFriend } from "~~/remote/im/ImChatUserFriend";
+import { findFriendByFriendId, modifyFriend } from "~/services/im/ImChatUserFriend";
 import MyMessage from "~/components/Base/Message/MyMessage";
 
 const imStore = useImStore()

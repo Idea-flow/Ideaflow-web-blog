@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {computed, ref} from 'vue'
-import {findFriendByFriendId} from "~~/remote/im/ImChatUserFriend";
-import {findGroupByGroupId} from "~~/remote/im/ImChatGroup";
+import {findFriendByFriendId} from "~/services/im/ImChatUserFriend";
+import {findGroupByGroupId} from "~/services/im/ImChatGroup";
 
 const imStore = useImStore()
 const currentChat = computed(() => imStore.currentChat)

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {ref} from "vue";
-import {getAll, createLink, type CreateLinkReq} from "~~/remote/friendLinks";
+import {getAll, createLink, type CreateLinkReq} from "~/services/friendLinks";
 
 let friendLinksData = ref([])
 

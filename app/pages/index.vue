@@ -10,7 +10,7 @@ useHead({
   title: "IdeaFlow博客-技术分享与学习笔记",
   meta: [
     {name: 'description', content: "欢迎访问IdeaFlow的博客，这里分享Web开发、前端技术、编程心得等优质内容。"},
-    {name: 'keywords', content: "博客,前端开发,Web开发,技术分享,编程学习,nuxt3"},
+    {name: 'keywords', content: "博客,前端开发,Web开发,技术分享,编程学习,nuxt4"},
     {name: 'author', content: "IdeaFlow"},
     // Open Graph tags for social sharing
     {property: 'og:type', content: "website"},
@@ -73,7 +73,7 @@ useHead({
 
     <!-- 右侧边栏区域 -->
     <div class="hidden md:block w-[24%] sticky top-24 h-fit">
-      <BlogSidebar v-if="!isMobile" />
+      <BlogSidebar />
     </div>
   </div>
 </template>

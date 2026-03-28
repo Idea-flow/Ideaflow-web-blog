@@ -243,7 +243,7 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
-import {logout} from "~~/remote/auth";
+import {logout} from "~/services/auth";
 import {useAppStore} from "~/stores/app";
 
 const route = useRoute()

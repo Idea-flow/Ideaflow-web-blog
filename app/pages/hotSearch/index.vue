@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import {getWeiBoHotSearch} from "~~/remote/hotSearch/weibo";
-import {getDouyinHotSearch, getDouyinHotSearchCookie} from "~~/remote/hotSearch/douyin";
-import {getBilibiliHotSearch} from "~~/remote/hotSearch/bilibili";
-import {getBaiduHotSearch} from "~~/remote/hotSearch/baidu";
-import {getZhihuHotSearch} from "~~/remote/hotSearch/zhihu";
-import {getLinuxdoHotSearch} from "~~/remote/hotSearch/linuxdo";
-import {getToutiaoHotSearch} from "~~/remote/hotSearch/toutiao";
+import {getWeiBoHotSearch} from "~/services/hotSearch/weibo";
+import {getDouyinHotSearch, getDouyinHotSearchCookie} from "~/services/hotSearch/douyin";
+import {getBilibiliHotSearch} from "~/services/hotSearch/bilibili";
+import {getBaiduHotSearch} from "~/services/hotSearch/baidu";
+import {getZhihuHotSearch} from "~/services/hotSearch/zhihu";
+import {getLinuxdoHotSearch} from "~/services/hotSearch/linuxdo";
+import {getToutiaoHotSearch} from "~/services/hotSearch/toutiao";
 
 // 新增引入
-import {getWallStreetcnHotSearch} from "~~/remote/hotSearch/wallstreetcn";
+import {getWallStreetcnHotSearch} from "~/services/hotSearch/wallstreetcn";
 
 // 热搜项目接口定义
 interface HotSearchItem {

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { useAppStore } from '~/stores/app'
-import {logout} from "~~/remote/auth";
+import {logout} from "~/services/auth";
 import {useToolsStore} from "~/stores/tools";
 
 
