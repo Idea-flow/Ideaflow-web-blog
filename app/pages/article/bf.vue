@@ -4,7 +4,7 @@ import {createMarkdownItImgNineLayoutPlugin} from "assets/js/markdown-it-plugin/
 import Comment from '~/components/Blog/Article/CommentMy/Comment.vue'
 import { useAppStore } from '~/stores/app'
 const route = useRoute()
-const routeArticleId = Number(route.params.id)
+const routeArticleId = Number(route.params.articleId)
 
 // 获取用户状态
 const userStore = useAppStore()
@@ -29,6 +29,8 @@ const articleHiddenInfoHiddenContent = ref(articleData.value?.data?.articleHidde
 
 // console.log("isHaveHidden:"+isHaveHidden.value+"  isArticleHiddenInfoUnlock:"+isArticleHiddenInfoUnlock.value +"  articleHiddenInfoTips:"+articleHiddenInfoTips.value+"  articleHiddenInfoHiddenContent:"+articleHiddenInfoHiddenContent.value)
 
+const { public: { appUrl } } = useRuntimeConfig()
+
 /*SEO配置*/
 useHead({
   title: article?.title,
@@ -42,7 +44,7 @@ useHead({
     { property: 'og:title', content: article?.title },
     { property: 'og:description', content: article?.summary },
     { property: 'og:image', content: article?.cover },
-    { property: 'og:url', content: `${process.env.APP_URL}/article/${article?.id}` },
+    { property: 'og:url', content: `${appUrl}/article/${article?.id}` },
     { name: 'twitter:card', content: 'summary_large_image' },
     { name: 'twitter:title', content: article?.title },
     { name: 'twitter:description', content: article?.summary },
@@ -59,7 +61,7 @@ useSeoMeta({
   ogTitle: article?.title,
   ogDescription: article?.summary,
   ogImage: article?.cover,
-  ogUrl: `${process.env.APP_URL}/article/${article?.id}`,
+  ogUrl: `${appUrl}/article/${article?.id}`,
   twitterCard: 'summary_large_image',
   twitterTitle: article?.title,
   twitterDescription: article?.summary,

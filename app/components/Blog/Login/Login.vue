@@ -20,7 +20,7 @@ const loading = ref(false)
 const countdown = ref(0)
 const showPassword = ref(false)
 const socialLoading = ref(false)
-let isDev = process.env.NODE_ENV === "development";
+let isDev = import.meta.dev;
 const redirect = ref<string>(props.redirect || '/')
 const socialRedirect = ref<string>('')
 

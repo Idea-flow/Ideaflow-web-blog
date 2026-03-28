@@ -9,7 +9,7 @@ let closeCallBack = null
 let connect = (wsurl,accessToken) => {
 	try {
 
-		let isDev = process.env.NODE_ENV === "development";
+		let isDev = import.meta.dev;
 		// isDev = false
 		wsurl = isDev ? "ws://localhost:8878/im" : "wss://https://blogserver.ideaflow.top/im";
 		if (isConnect) {

@@ -9,12 +9,6 @@
 </template>
 
 <script setup>
-useHead({
-  meta: [
-    {name: 'google-adsense-account', content: 'ca-pub-1870872898412136'}, // 百度站点添加,验证网站
-  ]
-})
-
 import {useCookie} from "#app";
 
 const isShow = ref(true)
@@ -50,7 +44,7 @@ if (import.meta.client) {
     window.addEventListener('resize', handleResize)
 
     // 在生产环境下禁用开发者工具和右键菜单
-    let isDev = process.env.NODE_ENV === "development";
+    let isDev = import.meta.dev;
     // if (!isDev) {
     //   // 禁用F12和其他开发者工具快捷键
     //   window.addEventListener('keydown', (e) => {

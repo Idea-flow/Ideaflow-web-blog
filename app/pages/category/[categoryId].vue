@@ -4,7 +4,7 @@ import { getArticlePage } from '~~/remote/article'
 
 // 获取路由参数
 const route = useRoute()
-const routeCategoryId = route.params.id
+const routeCategoryId = route.params.categoryId
 const categoryName = ref("")
 // 文章列表数据
 const articles = ref([])

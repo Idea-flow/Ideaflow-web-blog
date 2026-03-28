@@ -1,7 +1,7 @@
 
 export default defineNuxtPlugin((nuxtApp) => {
 
-    let isDev = process.env.NODE_ENV === "development";
+    let isDev = import.meta.dev;
 
     // 非生产环境不执行
     if (false){

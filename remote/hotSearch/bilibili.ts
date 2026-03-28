@@ -41,7 +41,7 @@ interface BilibiliHotSearchRes {
  */
 export async function getBilibiliHotSearch() {
   try {
-    let isDev = process.env.NODE_ENV === "development";
+    let isDev = import.meta.dev;
     const startTime = new Date();
     if (isDev) {
       console.log(`[B站] 请求开始时间: ${startTime.toLocaleString()}`);

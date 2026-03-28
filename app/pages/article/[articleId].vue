@@ -9,9 +9,9 @@ import { idToCode, codeToId } from '~~/utils/BvIdUtils';
 import { useAppStore } from '~/stores/app'
 const route = useRoute()
 
-const routeArticleIdString = String(route.params.id)
-// const routeArticleId = String(route.params.id)
-// 如果 route.params.id 为空
+const routeArticleIdString = String(route.params.articleId)
+// const routeArticleId = String(route.params.articleId)
+// 如果 route.params.articleId 为空
 if (!routeArticleIdString ) {
   MyMessage.error('资源无效，请返回重试');
   throw new Error('地址无效，请返回重试');
@@ -58,6 +58,8 @@ const hasCatalog = computed(() => {
 
 // console.log("isHaveHidden:"+isHaveHidden.value+"  isArticleHiddenInfoUnlock:"+isArticleHiddenInfoUnlock.value +"  articleHiddenInfoTips:"+articleHiddenInfoTips.value+"  articleHiddenInfoHiddenContent:"+articleHiddenInfoHiddenContent.value)
 
+const { public: { appUrl } } = useRuntimeConfig()
+
 /*SEO配置*/
 useHead({
   title: article?.title,
@@ -71,7 +73,7 @@ useHead({
     { property: 'og:title', content: article?.title },
     { property: 'og:description', content: article?.summary },
     { property: 'og:image', content: article?.cover },
-    { property: 'og:url', content: `${process.env.APP_URL}/article/${article?.id}` },
+    { property: 'og:url', content: `${appUrl}/article/${article?.id}` },
     { name: 'twitter:card', content: 'summary_large_image' },
     { name: 'twitter:title', content: article?.title },
     { name: 'twitter:description', content: article?.summary },
@@ -88,7 +90,7 @@ useSeoMeta({
   ogTitle: article?.title,
   ogDescription: article?.summary,
   ogImage: article?.cover,
-  ogUrl: `${process.env.APP_URL}/article/${article?.id}`,
+  ogUrl: `${appUrl}/article/${article?.id}`,
   twitterCard: 'summary_large_image',
   twitterTitle: article?.title,
   twitterDescription: article?.summary,

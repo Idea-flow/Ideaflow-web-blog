@@ -1,7 +1,7 @@
 
 export default defineNuxtPlugin((nuxtApp) => {
 
-    let isDev = process.env.NODE_ENV === "development";
+    let isDev = import.meta.dev;
     const data_website_id = '487c2807-7507-4ccb-adb5-38d4f4cf43a0'
     // 非生产环境不执行
     if (false){

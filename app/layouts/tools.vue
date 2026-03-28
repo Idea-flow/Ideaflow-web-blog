@@ -11,17 +11,6 @@ const handleSidebarToggle = (collapsed: boolean) => {
 const handleClick = (item: string) => {
   navigateTo(item)
 }
-
-
-// useHead({
-//   script: [
-//     {
-//       async: true,
-//       src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1870872898412136',
-//       crossorigin: 'anonymous'
-//     }
-//   ]
-// })
 </script>
 
 

@@ -4,40 +4,15 @@ const sw =  true;
 export default defineNuxtConfig({
   app: {
     head: {
-      script: [
-        // {
-        //   async: true,
-        //   src: 'https://www.googletagmanager.com/gtag/js?id=G-LHELTEKDPR'
-        // },
-        // {
-        //   innerHTML: `
-        //     window.dataLayer = window.dataLayer || [];
-        //     function gtag(){dataLayer.push(arguments);}
-        //     gtag('js', new Date());
-        //     gtag('config', 'G-LHELTEKDPR');
-        //   `,
-        //   type: 'text/javascript'
-        // },
-        //   谷歌广告
-        // {
-        //   async: true,
-        //   src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1870872898412136',
-        //   crossorigin: 'anonymous'
-        // },
-      ]
+      script: []
     }
   },
   modules: [// required
   '@nuxtjs/tailwindcss', '@pinia/nuxt', 'pinia-plugin-persistedstate/nuxt', '@nuxtjs/color-mode','@nuxthub/core',
     '@nuxt/icon',
     '@vite-pwa/nuxt',
-    '@nuxtjs/seo',
-      '@nuxtjs/google-adsense'
+    '@nuxtjs/seo'
   ],
-
-  googleAdsense: {
-    id: 'ca-pub-1870872898412136'
-  },
 
   css: ['~/assets/css/main.css','~/assets/css/theme/theme.css','~/assets/css/theme/scrollbar.css'],
   icon: {
@@ -93,6 +68,7 @@ export default defineNuxtConfig({
     public: {
       blogBaseURL:  process.env.NUXT_BLOG_BASE_API, // 从环境变量中获取API URL
       tenantId:  process.env.NUXT_BLOG_TENANT_ID, // 从环境变量中获取API URL
+      appUrl: process.env.APP_URL, // 前端公开站点地址
     },
   },
   pwa: {
@@ -170,14 +146,6 @@ export default defineNuxtConfig({
       globPatterns: ['**/*.{js,css,html,png,svg,ico,webp,mp3}'],
       runtimeCaching: [
         {
-          urlPattern: /^https:\/\/pagead2\.googlesyndication\.com\/.*/,
-          handler: 'NetworkOnly', // 确保广告脚本不被缓存
-        },
-        {
-          urlPattern: /^https:\/\/googleads\.g\.doubleclick\.net\/.*/,
-          handler: 'NetworkOnly',
-        },
-        {
           // 匹配以 `https://oss.ideaflow.top/` 开头的 MP3 文件
           urlPattern: ({ request, url }) =>
               request.destination === 'audio' &&
@@ -194,10 +162,6 @@ export default defineNuxtConfig({
           }
 
         }
-      ],
-      // 排除广告脚本
-      globIgnores: [
-        '**/adsbygoogle.js*',   // 匹配所有变体
       ],
     },
     devOptions: {

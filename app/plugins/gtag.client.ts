@@ -1,7 +1,7 @@
 export default defineNuxtPlugin((nuxtApp) => {
     // const MEASUREMENT_ID = 'G-NJ6472GBVK'
     const MEASUREMENT_ID = 'G-LHELTEKDPR'
-    const isDev = process.env.NODE_ENV === "development"
+    const isDev = import.meta.dev
 
     // 生产环境才执行
     if (!isDev) {

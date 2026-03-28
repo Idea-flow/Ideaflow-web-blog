@@ -1,7 +1,5 @@
 <script setup >
 // 这个页面是博客首页，负责展示首页内容、SEO 信息和广告位。
-// 这里显式引入本地广告组件，避免依赖 Nuxt 4 下已失效的 Adsbygoogle 全局组件。
-import GoogleFirst from '~/components/Ad/GoogleFirst.vue'
 
 import { useAppStore } from '~/stores/app'
 const appStore = useAppStore()
@@ -71,13 +69,6 @@ useHead({
 
 
       <BlogArticleLayout class="w-full" />
-
-<!--            <div class="w-auto ">-->
-<!--              <GoogleFirst-->
-<!--                  ad-format="auto"-->
-<!--                  :style="{ minWidth: '300px' }"-->
-<!--              />-->
-<!--            </div>-->
     </div>
 
     <!-- 右侧边栏区域 -->

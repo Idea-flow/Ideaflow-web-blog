@@ -33,7 +33,7 @@ interface weiBoRes {
  */
 export async function getWeiBoHotSearch() {
     try {
-        let isDev = process.env.NODE_ENV === "development";
+        let isDev = import.meta.dev;
         const startTime = new Date();
         if (isDev) {
             console.log(`[微博] 请求开始时间: ${startTime.toLocaleString()}`);

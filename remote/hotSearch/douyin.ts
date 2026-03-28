@@ -48,7 +48,7 @@ export async function getDouyinHotSearchCookie() {
 export async function getDouyinHotSearch() {
   try {
     // 使用服务端代理接口
-    let isDev = process.env.NODE_ENV === "development";
+    let isDev = import.meta.dev;
     const startTime = new Date();
     if (isDev) {
       console.log(`[抖音] 请求开始时间: ${startTime.toLocaleString()}`);

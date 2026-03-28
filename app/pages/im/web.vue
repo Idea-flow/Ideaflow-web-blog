@@ -14,7 +14,7 @@ const activeNav = computed(() => imStore.activeNav)
 
 
 const token = useCookie('accessToken').value
-let isDev = process.env.NODE_ENV === "development";
+let isDev = import.meta.dev;
 // isDev = false
 // ws初始化
 // const imNettyWsUrl = isDev ? "ws://localhost:8878/im" : "wss://blogserver.ideaflow.top/im";

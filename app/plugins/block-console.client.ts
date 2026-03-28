@@ -3,7 +3,7 @@ import {computed} from "vue";
 
 export default defineNuxtPlugin((nuxtApp) => {
 
-    let isDev = process.env.NODE_ENV === "development";
+    let isDev = import.meta.dev;
 
     const appStore = useAppStore()
 
