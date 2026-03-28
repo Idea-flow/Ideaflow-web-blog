@@ -25,7 +25,6 @@
   - `@nuxtjs/seo@2.2.0`
   - `@nuxtjs/tailwindcss@6.13.1`
   - `@pinia/nuxt@0.10.1`
-  - `@vite-pwa/nuxt@0.10.6`
 
 ### 2.2 当前目录结构特征
 
@@ -127,7 +126,6 @@
 │  └─ utils/
 ├─ docs/
 │  └─ 升级方案/
-├─ service-worker/
 ├─ nuxt.config.ts
 ├─ package.json
 └─ tsconfig.json
@@ -152,7 +150,6 @@
 | `data/` | `shared/` 或根目录保留 | 视是否前后端共用决定 |
 | `server/` | `server/` | 继续保留在根目录 |
 | `public/` | `public/` | 继续保留在根目录 |
-| `service-worker/` | `service-worker/` | 可保留根目录，按现有 PWA 配置继续使用 |
 
 ### 3.3 本项目建议的目录归类原则
 
@@ -185,7 +182,6 @@
 
 ```vue
 <template>
-  <NuxtPwaManifest />
   <NuxtLayout>
     <NuxtPage />
   </NuxtLayout>
@@ -296,7 +292,7 @@ npx nuxt upgrade --channel=v4 --dedupe --force
 本阶段重点检查：
 
 - `nuxt` 是否升级到 Nuxt 4 最新稳定版
-- `@pinia/nuxt`、`@nuxt/icon`、`@nuxtjs/seo`、`@vite-pwa/nuxt` 是否自动被带到兼容版本
+- `@pinia/nuxt`、`@nuxt/icon`、`@nuxtjs/seo` 是否自动被带到兼容版本
 - 构建是否出现模块 peer dependency 报错
 
 **当前项目实践补充**：
@@ -382,10 +378,8 @@ remote/  -> app/services/
   - 例如原来的 `./assets/myIcons`
   - 迁移后应改为 `./app/assets/myIcons`
 
-- PWA `injectManifest` 配置
-  - 当前项目 `service-worker/` 仍保留在项目根目录
-  - 迁移到 `app/` 后，如果 `srcDir: 'service-worker'` 不调整，构建会去找 `app/service-worker`
-  - 本项目实际修正方式是让 `srcDir` 显式指向根目录的 `service-worker`
+- 本项目已移除 `@vite-pwa/nuxt`，因此不再保留旧的 PWA 模块配置
+- 后续如需继续支持 PWA，建议改为原生 `manifest.webmanifest` 与原生 service worker 注册方案
 
 ## 5.4 阶段四：布局与页面元信息改造
 
@@ -535,16 +529,24 @@ const isDev = import.meta.dev
 
 当前 [nuxt.config.ts](/Users/wangpenglong/projects/nuxt/Ideaflow-web-blog/nuxt.config.ts) 里集成了：
 
-- `@vite-pwa/nuxt`
 - `@nuxtjs/seo`
 - sitemap / robots / og image 相关配置
 
 升级时要重点确认：
 
-- service worker 路径是否仍有效
-- manifest 是否正常输出
-- `NuxtPwaManifest` 是否继续可用
 - sitemap 数据源 `/api/__sitemap__/urls` 是否仍正常
+
+### 6.5 PWA 模块移除说明
+
+当前项目已完成以下清理：
+
+- 删除 `@vite-pwa/nuxt` 依赖
+- 删除 `nuxt.config.ts` 中对应的 `pwa` 配置
+- 删除 [app.vue](/Users/wangpenglong/projects/nuxt/Ideaflow-web-blog/app/app.vue) 中的 `NuxtPwaManifest`
+- 删除旧的 Workbox service worker 文件
+- 删除旧的 Workbox 学习演示页
+
+后续如果继续实现 PWA，建议单独采用“原生 manifest + 原生 service worker 注册”的方案，不再复用旧 Nuxt 模块配置。
 
 ## 6.8 当前项目已验证的升级规则
 

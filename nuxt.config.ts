@@ -1,6 +1,4 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-
-const sw =  true;
 export default defineNuxtConfig({
   app: {
     head: {
@@ -10,7 +8,6 @@ export default defineNuxtConfig({
   modules: [// required
   '@nuxtjs/tailwindcss', '@pinia/nuxt', 'pinia-plugin-persistedstate/nuxt', '@nuxtjs/color-mode','@nuxthub/core',
     '@nuxt/icon',
-    '@vite-pwa/nuxt',
     '@nuxtjs/seo'
   ],
 
@@ -69,107 +66,6 @@ export default defineNuxtConfig({
       blogBaseURL:  process.env.NUXT_BLOG_BASE_API, // 从环境变量中获取API URL
       tenantId:  process.env.NUXT_BLOG_TENANT_ID, // 从环境变量中获取API URL
       appUrl: process.env.APP_URL, // 前端公开站点地址
-    },
-  },
-  pwa: {
-    registerType: 'autoUpdate', // 注册 service worker 自动更新
-    strategies: sw ? 'injectManifest' : 'generateSW',
-    srcDir: sw ? '../service-worker' : undefined,
-    filename: sw ? 'sw.ts' : undefined,
-    // PWA 配置
-    manifest: {
-      name: 'IdeaFlow博客', // 应用名称
-      short_name: 'IdeaFlow博客', // 短名称
-      description: '欢迎访问IdeaFlow的博客，这里分享Web开发、前端技术、编程心得等优质内容', // 描述
-      lang: 'zh-CN', // 语言
-      display: 'standalone', // 显示方式  'fullscreen' | 'standalone' | 'minimal-ui' | 'browser'
-      background_color: '#000000', // 背景色
-      theme_color: '#000000', // 主题色
-      // start_url: '/', // 启动时的 URL
-      icons: [
-        {
-          src: '/icon-192.png',
-          sizes: '192x192',
-          type: 'image/png',
-        },
-        {
-          src: 'icon-192-maskable.png',
-          sizes: '192x192',
-          type: 'image/png',
-          purpose: 'any maskable',
-        },
-
-        {
-          src: '/icon-512.png',
-          sizes: '512x512',
-          type: 'image/png',
-        },
-
-        {
-          src: 'icon-512-maskable.png',
-          sizes: '512x512',
-          type: 'image/png',
-          purpose: 'any maskable',
-        },
-      ],
-      shortcuts: [
-        {
-          name: "素笺存忆",
-          short_name: "素笺存忆",
-          description: "素笺存忆",
-          url: "/archive",
-          icons: [
-            {
-              src: '/icon-192.png',
-              sizes: '192x192',
-              type: 'image/png',
-            }
-          ]
-        }
-      ],
-      screenshots: [
-        {
-          src: "/icon-512.png",
-          sizes: '512x512',
-          type: "image/png",
-          form_factor: "wide"
-        },
-        {
-          src: "/icon-512.png",
-          sizes: '512x512',
-          type: "image/png",
-          form_factor: "wide"
-        }
-      ]
-    },
-    workbox: {
-      globPatterns: ['**/*.{js,css,html,png,svg,ico,webp,mp3}'],
-      runtimeCaching: [
-        {
-          // 匹配以 `https://oss.ideaflow.top/` 开头的 MP3 文件
-          urlPattern: ({ request, url }) =>
-              request.destination === 'audio' &&
-              url.host === 'oss.ideaflow.top' &&
-              url.pathname.endsWith('.mp3'),
-          handler: 'CacheFirst', //
-          options: {
-            cacheName: 'ideaflow-mp3-cache', // 缓存名称
-            // 缓存过期配置（可选）
-            expiration: {
-              maxAgeSeconds: 7 * 24 * 60 * 60, // 缓存有效期 7 天
-              maxEntries: 100, // 最多缓存 50 个文件
-            }
-          }
-
-        }
-      ],
-    },
-    devOptions: {
-      enabled: false,
-      suppressWarnings: true,
-      navigateFallback: '/',
-      navigateFallbackAllowlist: [/^\/$/],
-      type: 'module',
     },
   },
   //

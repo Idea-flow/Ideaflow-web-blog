@@ -1,7 +1,4 @@
 <template>
-
-  <NuxtPwaManifest />
-
   <NuxtLayout  v-if="isShow" :name="layoutName">
     <NuxtPage />
   </NuxtLayout>
