@@ -2,7 +2,14 @@
 export default defineNuxtConfig({
   app: {
     head: {
-      script: [],
+      script: [
+        {
+          id: 'google-adsense-script',
+          async: true,
+          src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1870872898412136',
+          crossorigin: 'anonymous'
+        }
+      ],
       meta: [
         { name: 'application-name', content: 'IdeaFlow' },
         { name: 'apple-mobile-web-app-capable', content: 'yes' },
@@ -80,6 +87,8 @@ export default defineNuxtConfig({
       blogBaseURL:  process.env.NUXT_BLOG_BASE_API, // 从环境变量中获取API URL
       tenantId:  process.env.NUXT_BLOG_TENANT_ID, // 从环境变量中获取API URL
       appUrl: process.env.APP_URL, // 前端公开站点地址
+      googleAdsenseClient: process.env.NUXT_PUBLIC_GOOGLE_ADSENSE_CLIENT || 'ca-pub-1870872898412136',
+      googleAdsenseHomeSlot: process.env.NUXT_PUBLIC_GOOGLE_ADSENSE_HOME_SLOT || '9250379418',
     },
   },
   //

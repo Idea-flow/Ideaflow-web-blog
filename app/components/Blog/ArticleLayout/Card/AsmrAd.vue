@@ -41,6 +41,19 @@ const blogStore = useBlogStore()
 const passwordAuth = ref('')
 const passwordAuthDialog = ref(false)
 const currentAuthId = ref(0)
+const runtimeConfig = useRuntimeConfig()
+
+/**
+ * 计算首页广告卡片的插入位置。
+ * 当前规则是取当前分页结果的中间索引，让广告自然混入当前页的文章列表。
+ */
+const adInsertIndex = computed(() => {
+  if (articleList.value.length < 3) {
+    return -1
+  }
+
+  return Math.floor(articleList.value.length / 2)
+})
 
 // 格式化时间显示
 const formatTime = (dateString: string) => {
@@ -113,10 +126,10 @@ function onPasswordSubmit(password: string) {
 <template>
   <div class="px-4 md:px-0 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-8">
     <template v-for="(article, index) in articleList" :key="article.id">
-<!--      <div v-if="index === Math.floor(articleList.length / 2) && articleList.length > 1" -->
-<!--           class="group bg-base-100 backdrop-blur-sm rounded-xl transition-all duration-300 relative overflow-hidden cursor-pointer card-scale-animation">-->
-<!--        <AdAdsterraNativeBanner />-->
-<!--      </div>-->
+      <AdGoogleAdsenseCard
+        v-if="adInsertIndex === index"
+        :slot="runtimeConfig.public.googleAdsenseHomeSlot"
+      />
       <div
         @click="goToArticle(article.id)"
         class="group bg-base-100 backdrop-blur-sm rounded-xl transition-all duration-300 relative overflow-hidden cursor-pointer card-scale-animation">
