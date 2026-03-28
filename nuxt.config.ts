@@ -2,7 +2,21 @@
 export default defineNuxtConfig({
   app: {
     head: {
-      script: []
+      script: [],
+      meta: [
+        { name: 'application-name', content: 'IdeaFlow' },
+        { name: 'apple-mobile-web-app-capable', content: 'yes' },
+        { name: 'apple-mobile-web-app-title', content: 'IdeaFlow' },
+        { name: 'apple-mobile-web-app-status-bar-style', content: 'default' },
+        { name: 'mobile-web-app-capable', content: 'yes' },
+        { name: 'theme-color', content: '#64B5F6', media: '(prefers-color-scheme: light)' },
+        { name: 'theme-color', content: '#5C6BC0', media: '(prefers-color-scheme: dark)' }
+      ],
+      link: [
+        { rel: 'manifest', href: '/manifest.webmanifest' },
+        { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
+        { rel: 'mask-icon', href: '/safari-pinned-tab.svg', color: '#5bbad5' }
+      ]
     }
   },
   modules: [// required

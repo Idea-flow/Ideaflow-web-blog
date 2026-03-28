@@ -546,7 +546,18 @@ const isDev = import.meta.dev
 - 删除旧的 Workbox service worker 文件
 - 删除旧的 Workbox 学习演示页
 
-后续如果继续实现 PWA，建议单独采用“原生 manifest + 原生 service worker 注册”的方案，不再复用旧 Nuxt 模块配置。
+当前项目后续已切换为原生 PWA 方案，落地点如下：
+
+- 使用 [public/manifest.webmanifest](/Users/wangpenglong/projects/nuxt/Ideaflow-web-blog/public/manifest.webmanifest) 提供安装清单
+- 使用 [public/sw.js](/Users/wangpenglong/projects/nuxt/Ideaflow-web-blog/public/sw.js) 提供原生 Service Worker 缓存能力
+- 使用 [pwa.client.ts](/Users/wangpenglong/projects/nuxt/Ideaflow-web-blog/app/plugins/pwa.client.ts) 在客户端注册 Service Worker
+- 在 [nuxt.config.ts](/Users/wangpenglong/projects/nuxt/Ideaflow-web-blog/nuxt.config.ts) 的 `app.head` 中统一注入 `manifest`、`theme-color`、`apple-touch-icon` 等安装所需元信息
+
+当前原生 PWA 方案的边界如下：
+
+- 已支持安装清单、桌面/移动端添加到主屏幕、构建静态资源缓存、图片缓存
+- 暂未接管 HTML 导航请求，因此没有实现完整离线浏览
+- 如后续需要离线页，可再单独补 `offline.html` 与导航请求兜底逻辑
 
 ## 6.8 当前项目已验证的升级规则
 
