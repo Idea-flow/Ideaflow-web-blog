@@ -17,7 +17,6 @@
     "@nuxtjs/tailwindcss": "^6.13.1",
     "@pinia/nuxt": "^0.11.3",
     "cheerio": "^1.0.0",
-    "commander": "^13.1.0",
     "cron-parser": "^5.0.4",
     "crypto-js": "^4.2.0",
     "danmu.js": "^1.1.13",
