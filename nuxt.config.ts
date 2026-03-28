@@ -67,6 +67,13 @@ export default defineNuxtConfig({
   },
 
   compatibilityDate: '2024-11-01',
+  nitro: {
+    preset: 'cloudflare_module',
+    cloudflare: {
+      deployConfig: true,
+      nodeCompat: true
+    }
+  },
   devtools: { enabled: true },
 
   colorMode: {
