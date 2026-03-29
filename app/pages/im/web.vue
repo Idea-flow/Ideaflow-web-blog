@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import * as $wsApi from '~~/utils/imNetty/wssocket.js';
+import * as $wsApi from '~/utils/imNetty/wssocket.js';
 import {computed, onMounted} from "vue";
 import MiddleArea from "~/components/im/web/middle/MiddleArea.vue";
 import Sidebar from "~/components/im/web/left/Sidebar.vue";
@@ -183,7 +183,9 @@ if (!imStore.isChatListLoaded) {
 if (!imStore.isContactInfoLoaded) {
   // console.log("imh5 into xxx:")
   const { data: allContactInfoRes } = await getAllContactInfo()
-  console.log("im-web-JSON.stringify(allContactInfoRes):"+JSON.stringify(allContactInfoRes))
+  if (isDev) {
+    console.log('im-web-allContactInfoRes:', allContactInfoRes.value)
+  }
   const groupInfoList = allContactInfoRes.value?.data?.imContactGroupInfoList || []
   const friendInfoList = allContactInfoRes.value?.data?.imContactFriendInfoList || []
 

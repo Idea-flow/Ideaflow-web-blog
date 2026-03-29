@@ -349,10 +349,10 @@ remote/  -> app/services/
 - `~/components/...`
 - `~/assets/...`
 - `~/stores/...`
-- `~/remote/...`
+- `~/services/...`
 - `~/utils/...`
 
-其中 `remote/` 迁移为 `app/services/` 后，建议统一替换 import 路径，避免继续保留历史目录名。
+其中请求层统一迁移到 `app/services/` 后，建议统一替换 import 路径，避免继续保留历史目录名。
 
 **当前项目实践补充**：
 
@@ -365,8 +365,16 @@ remote/  -> app/services/
   - `~/services/...`
   - `~~/shared/types/...`
   - `~~/shared/utils/...`
-- 为降低迁移风险，根目录原有的 `remote/`、`types/`、`utils/` 中关键文件暂时保留为兼容桥接层。
-- 因此现阶段不要再新增 `~~/remote/...`、`~~/types/...`、`~~/utils/BvIdUtils`、`~~/utils/proxyPicture` 这类新引用。
+- 当前项目已进一步完成类型收口：
+  - 根目录 `types/` 兼容桥接层已删除
+  - 共享类型统一收敛到 `shared/types/`
+- 当前项目已进一步完成请求层收口：
+  - 根目录 `remote/` 实现层已删除
+  - 请求封装统一收敛到 `app/services/`
+- 当前项目已进一步完成工具层收口：
+  - 请求工具与 IM WebSocket 工具已迁入 `app/utils/`
+  - 共享纯函数统一收敛到 `shared/utils/`
+- 当前仍不建议新增 `~~/utils/...` 这类历史路径引用。
 
 ### 5.3.2 迁移后需要重点修正的配置
 
@@ -443,7 +451,7 @@ remote/  -> app/services/
   - `blogBaseURL`
   - `tenantId`
   - `appUrl`
-- 请求层 [request.ts](/Users/wangpenglong/projects/nuxt/Ideaflow-web-blog/utils/request.ts) 已改为从 `useRuntimeConfig().public` 读取 `blogBaseURL` 和 `tenantId`
+- 请求层 [request.ts](/Users/wangpenglong/projects/nuxt/Ideaflow-web-blog/app/utils/request.ts) 已改为从 `useRuntimeConfig().public` 读取 `blogBaseURL` 和 `tenantId`
 - 文章页：
   - [article/[articleId].vue](/Users/wangpenglong/projects/nuxt/Ideaflow-web-blog/app/pages/article/[articleId].vue)
   - [article/bf.vue](/Users/wangpenglong/projects/nuxt/Ideaflow-web-blog/app/pages/article/bf.vue)
@@ -473,7 +481,7 @@ const isDev = import.meta.dev
 - [gtag.client.ts](/Users/wangpenglong/projects/nuxt/Ideaflow-web-blog/app/plugins/gtag.client.ts)
 - [my-analysis.client.ts](/Users/wangpenglong/projects/nuxt/Ideaflow-web-blog/app/plugins/my-analysis.client.ts)
 - [clarity.client.ts](/Users/wangpenglong/projects/nuxt/Ideaflow-web-blog/app/plugins/clarity.client.ts)
-- [request.ts](/Users/wangpenglong/projects/nuxt/Ideaflow-web-blog/utils/request.ts)
+- [request.ts](/Users/wangpenglong/projects/nuxt/Ideaflow-web-blog/app/utils/request.ts)
 
 ## 5.7 阶段七：验证与回归
 

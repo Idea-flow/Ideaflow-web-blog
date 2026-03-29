@@ -2,7 +2,7 @@
 import chat from "~/pages/im/h5/chatP/index.vue"
 import RecentChatList from "~/pages/im/h5/RecentChatList/index.vue"
 import {onMounted} from "vue";
-import * as $wsApi from "~~/utils/imNetty/wssocket";
+import * as $wsApi from "~/utils/imNetty/wssocket";
 import {useImStore} from "~/stores/ImStore";
 import {getAllContactInfo} from "~/services/imChat";
 
