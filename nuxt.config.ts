@@ -38,7 +38,7 @@ export default defineNuxtConfig({
     }
   },
   modules: [// required
-  '@nuxtjs/tailwindcss', '@pinia/nuxt', 'pinia-plugin-persistedstate/nuxt', '@nuxtjs/color-mode','@nuxthub/core',
+  '@nuxtjs/tailwindcss', '@pinia/nuxt', 'pinia-plugin-persistedstate/nuxt', '@nuxtjs/color-mode',
     '@nuxt/icon'
   ],
 

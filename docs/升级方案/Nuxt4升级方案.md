@@ -20,7 +20,7 @@
 - 锁文件：`package-lock.json`
 - 当前主要 Nuxt 模块：
   - `@nuxt/icon@1.11.0`
-  - `@nuxthub/core@0.8.17`
+  - `@nuxthub/core` 已移除
   - `@nuxtjs/color-mode@3.5.2`
   - 已移除 `@nuxtjs/seo`
   - `@nuxtjs/tailwindcss@6.13.1`
