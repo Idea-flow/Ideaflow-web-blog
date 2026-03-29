@@ -8,28 +8,36 @@ export default defineNuxtPlugin(() => {
     return
   }
 
-  if (import.meta.dev) {
-    /**
-     * 开发环境主动注销历史 Service Worker。
-     * 避免浏览器继续沿用之前已注册的缓存脚本，导致本地看起来仍然像 PWA。
-     */
-    async function unregisterDevelopmentServiceWorkers() {
-      if (!('serviceWorker' in navigator)) {
-        console.info('[PWA] 开发环境已跳过 Service Worker 注册，当前浏览器不支持 Service Worker')
-        return
-      }
+  const runtimeConfig = useRuntimeConfig()
+  const enableDevPwa = Boolean(runtimeConfig.public.enableDevPwa)
 
-      const registrations = await navigator.serviceWorker.getRegistrations()
-
-      if (!registrations.length) {
-        console.info('[PWA] 开发环境已跳过 Service Worker 注册，且没有历史注册记录')
-        return
-      }
-
-      await Promise.all(registrations.map((registration) => registration.unregister()))
-      console.info(`[PWA] 开发环境已注销 ${registrations.length} 个历史 Service Worker`)
+  /**
+   * 开发环境主动注销历史 Service Worker，并清理相关 Cache Storage。
+   * 避免浏览器继续沿用之前已注册的缓存脚本，导致本地调试资源被旧缓存拦截。
+   */
+  async function unregisterDevelopmentServiceWorkers() {
+    if (!('serviceWorker' in navigator)) {
+      console.info('[PWA] 开发环境已跳过 Service Worker 注册，当前浏览器不支持 Service Worker')
+      return
     }
 
+    const registrations = await navigator.serviceWorker.getRegistrations()
+    await Promise.all(registrations.map((registration) => registration.unregister()))
+
+    if ('caches' in window) {
+      const cacheNames = await caches.keys()
+      await Promise.all(cacheNames.map((cacheName) => caches.delete(cacheName)))
+    }
+
+    if (!registrations.length) {
+      console.info('[PWA] 开发环境已跳过 Service Worker 注册，且没有历史注册记录')
+      return
+    }
+
+    console.info(`[PWA] 开发环境已注销 ${registrations.length} 个历史 Service Worker，并清理站点缓存`)
+  }
+
+  if (import.meta.dev && !enableDevPwa) {
     void unregisterDevelopmentServiceWorkers()
     return
   }

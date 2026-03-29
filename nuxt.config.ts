@@ -1,4 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+const enableDevPwa = process.env.NUXT_ENABLE_DEV_PWA === 'true'
+const enablePwa = process.env.NODE_ENV === 'production' || enableDevPwa
+
 export default defineNuxtConfig({
   app: {
     head: {
@@ -11,25 +14,32 @@ export default defineNuxtConfig({
         }
       ],
       meta: [
-        { name: 'application-name', content: 'IdeaFlow' },
-        { name: 'apple-mobile-web-app-capable', content: 'yes' },
-        { name: 'apple-mobile-web-app-title', content: 'IdeaFlow' },
-        { name: 'apple-mobile-web-app-status-bar-style', content: 'default' },
-        { name: 'mobile-web-app-capable', content: 'yes' },
-        { name: 'theme-color', content: '#64B5F6', media: '(prefers-color-scheme: light)' },
-        { name: 'theme-color', content: '#5C6BC0', media: '(prefers-color-scheme: dark)' }
+        ...(enablePwa
+          ? [
+              { name: 'application-name', content: 'IdeaFlow' },
+              { name: 'apple-mobile-web-app-capable', content: 'yes' },
+              { name: 'apple-mobile-web-app-title', content: 'IdeaFlow' },
+              { name: 'apple-mobile-web-app-status-bar-style', content: 'default' },
+              { name: 'mobile-web-app-capable', content: 'yes' },
+              { name: 'theme-color', content: '#64B5F6', media: '(prefers-color-scheme: light)' },
+              { name: 'theme-color', content: '#5C6BC0', media: '(prefers-color-scheme: dark)' }
+            ]
+          : [])
       ],
       link: [
-        { rel: 'manifest', href: '/manifest.webmanifest' },
-        { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
-        { rel: 'mask-icon', href: '/safari-pinned-tab.svg', color: '#5bbad5' }
+        ...(enablePwa
+          ? [
+              { rel: 'manifest', href: '/manifest.webmanifest' },
+              { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
+              { rel: 'mask-icon', href: '/safari-pinned-tab.svg', color: '#5bbad5' }
+            ]
+          : [])
       ]
     }
   },
   modules: [// required
   '@nuxtjs/tailwindcss', '@pinia/nuxt', 'pinia-plugin-persistedstate/nuxt', '@nuxtjs/color-mode','@nuxthub/core',
-    '@nuxt/icon',
-    '@nuxtjs/seo'
+    '@nuxt/icon'
   ],
 
   css: ['~/assets/css/main.css','~/assets/css/theme/theme.css','~/assets/css/theme/scrollbar.css'],
@@ -98,6 +108,7 @@ export default defineNuxtConfig({
       googleAdsenseClient: process.env.NUXT_PUBLIC_GOOGLE_ADSENSE_CLIENT || 'ca-pub-1870872898412136',
       googleAdsenseHomeSlot: process.env.NUXT_PUBLIC_GOOGLE_ADSENSE_HOME_SLOT || '9250379418',
       enableDevAdsense: process.env.NUXT_PUBLIC_ENABLE_DEV_ADSENSE === 'true',
+      enableDevPwa,
     },
   },
   //
@@ -119,39 +130,7 @@ export default defineNuxtConfig({
         '127.0.0.1'
       ]
     }
-  }
-
-
-
-
-  ,
-
-  //seo模块
-  ogImage: {
-    enabled: false
   },
-  sitemap: {
-    enabled: true,
-    sources: [
-      '/api/__sitemap__/urls',
-
-      // 'https://www.douyin.com/sitemap.xml',
-    ]
-  },
-  robots: {
-    enabled: true,
-    disallow: ["/study/","/study"]
-  },
-  seo: { // seo utils
-    enabled: false
-  },
-  schemaOrg: {
-    enabled: false
-  },
-  linkChecker: {
-    enabled: false
-  },
-
   typescript: {
     tsConfig: {
       compilerOptions: {

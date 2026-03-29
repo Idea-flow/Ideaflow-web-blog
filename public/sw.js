@@ -1,13 +1,12 @@
 /**
  * PWA 封面缓存 Service Worker。
- * 负责为前台封面图片与站内构建静态资源提供轻量缓存能力，
- * 提升二次访问速度，但不接管页面、接口与视频资源的离线缓存。
+ * 负责为前台封面图片提供轻量缓存能力，
+ * 提升二次访问速度，但不接管页面、构建静态资源、接口与视频资源的离线缓存。
  */
 const CACHE_VERSION = 'v2'
 const COVER_CACHE_NAME = `blog-cover-cache-${CACHE_VERSION}`
-const STATIC_CACHE_NAME = `blog-static-cache-${CACHE_VERSION}`
 const MAX_CACHE_ENTRIES = 200
-const CACHE_NAME_PREFIXES = ['asmr-cover-cache-', 'asmr-static-cache-']
+const CACHE_NAME_PREFIXES = ['asmr-cover-cache-']
 
 /**
  * Service Worker 安装阶段。
@@ -24,7 +23,7 @@ self.addEventListener('install', (event) => {
 self.addEventListener('activate', (event) => {
   event.waitUntil((async () => {
     const cacheNames = await caches.keys()
-    const activeCacheNames = new Set([COVER_CACHE_NAME, STATIC_CACHE_NAME])
+    const activeCacheNames = new Set([COVER_CACHE_NAME])
     const staleCacheNames = cacheNames.filter((cacheName) => {
       return CACHE_NAME_PREFIXES.some((prefix) => cacheName.startsWith(prefix)) && !activeCacheNames.has(cacheName)
     })
@@ -41,11 +40,6 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   const { request } = event
 
-  if (shouldHandleStaticAssetRequest(request)) {
-    event.respondWith(handleStaticAssetRequest(request))
-    return
-  }
-
   if (!shouldHandleImageRequest(request)) {
     return
   }
@@ -59,24 +53,6 @@ self.addEventListener('fetch', (event) => {
  */
 function shouldHandleImageRequest(request) {
   return request.method === 'GET' && request.destination === 'image'
-}
-
-/**
- * 判断当前请求是否属于本站构建静态资源。
- * 仅缓存同源 `/_nuxt/` 下的 JS、CSS、字体等构建产物。
- */
-function shouldHandleStaticAssetRequest(request) {
-  if (request.method !== 'GET') {
-    return false
-  }
-
-  const url = new URL(request.url)
-
-  if (url.origin !== self.location.origin) {
-    return false
-  }
-
-  return url.pathname.startsWith('/_nuxt/')
 }
 
 /**
@@ -103,27 +79,6 @@ async function handleImageRequest(request) {
   } catch (error) {
     return Response.error()
   }
-}
-
-/**
- * 处理构建静态资源缓存逻辑。
- * 由于 `/_nuxt/` 资源带内容哈希，适合使用 Cache First 策略长期命中。
- */
-async function handleStaticAssetRequest(request) {
-  const cache = await caches.open(STATIC_CACHE_NAME)
-  const cachedResponse = await cache.match(request)
-
-  if (cachedResponse) {
-    return cachedResponse
-  }
-
-  const networkResponse = await fetch(request)
-
-  if (networkResponse.ok && networkResponse.type === 'basic') {
-    await cache.put(request, networkResponse.clone())
-  }
-
-  return networkResponse
 }
 
 /**

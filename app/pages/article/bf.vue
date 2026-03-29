@@ -60,7 +60,6 @@ useSeoMeta({
   ogType: 'article',
   ogTitle: article?.title,
   ogDescription: article?.summary,
-  ogImage: article?.cover,
   ogUrl: `${appUrl}/article/${article?.id}`,
   twitterCard: 'summary_large_image',
   twitterTitle: article?.title,

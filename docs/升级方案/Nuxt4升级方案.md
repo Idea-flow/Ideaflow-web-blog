@@ -22,7 +22,7 @@
   - `@nuxt/icon@1.11.0`
   - `@nuxthub/core@0.8.17`
   - `@nuxtjs/color-mode@3.5.2`
-  - `@nuxtjs/seo@2.2.0`
+  - 已移除 `@nuxtjs/seo`
   - `@nuxtjs/tailwindcss@6.13.1`
   - `@pinia/nuxt@0.10.1`
 
@@ -292,7 +292,7 @@ npx nuxt upgrade --channel=v4 --dedupe --force
 本阶段重点检查：
 
 - `nuxt` 是否升级到 Nuxt 4 最新稳定版
-- `@pinia/nuxt`、`@nuxt/icon`、`@nuxtjs/seo` 是否自动被带到兼容版本
+- `@pinia/nuxt`、`@nuxt/icon` 等模块是否自动被带到兼容版本
 - 构建是否出现模块 peer dependency 报错
 
 **当前项目实践补充**：
@@ -529,7 +529,7 @@ const isDev = import.meta.dev
 
 当前 [nuxt.config.ts](/Users/wangpenglong/projects/nuxt/Ideaflow-web-blog/nuxt.config.ts) 里集成了：
 
-- `@nuxtjs/seo`
+- SEO 模块链已拆除，改为项目内手写 `robots.txt` 与 `sitemap.xml`
 - sitemap / robots / og image 相关配置
 
 升级时要重点确认：
