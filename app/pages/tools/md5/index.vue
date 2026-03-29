@@ -41,7 +41,8 @@ const calculateMD5 = () => {
     };
     isCalculated.value = true;
   } catch (error) {
-    console.error('MD5计算错误:', error);
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    console.error(`MD5计算错误: ${errorMessage}`);
   }
 };
 import MyMessage from "~/components/Base/Message/MyMessage";

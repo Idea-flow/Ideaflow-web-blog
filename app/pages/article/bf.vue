@@ -174,7 +174,8 @@ const handleSubmit = async (content: string, parentId?: number, replyToUserId?: 
       commentRef.value?.onSubmitSuccess(data.value?.data)
     }
   } catch (error) {
-    console.error('提交评论失败：', error)
+    const errorMessage = error instanceof Error ? error.message : String(error)
+    console.error(`提交评论失败：${errorMessage}`)
   }
 }
 
@@ -194,7 +195,8 @@ const handleCommentSubmit = async (content: string, parentId?: number, replyToUs
       commentComponent.value?.onSubmitSuccess(data.value?.data)
     }
   } catch (error) {
-    console.error('提交评论失败：', error)
+    const errorMessage = error instanceof Error ? error.message : String(error)
+    console.error(`提交评论失败：${errorMessage}`)
   }
 }
 

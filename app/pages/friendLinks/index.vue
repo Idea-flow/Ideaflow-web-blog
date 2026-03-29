@@ -71,7 +71,8 @@ const handleSubmit = async () => {
     const { data: newData } = await getAll()
     friendLinksData.value = newData.value?.data
   } catch (error) {
-    console.error('提交失败：', error)
+    const errorMessage = error instanceof Error ? error.message : String(error)
+    console.error(`提交失败：${errorMessage}`)
   }
 }
 

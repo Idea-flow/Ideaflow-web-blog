@@ -87,7 +87,8 @@ const handleFileUpload = async (file: File) => {
     // 上传成功后设置预览图片
     previewImage.value = showUrl.value
   } catch (error) {
-    console.error('上传失败:', error)
+    const errorMessage = error instanceof Error ? error.message : String(error)
+    console.error(`上传失败: ${errorMessage}`)
     alert('图片上传失败，请重试')
   }
 }

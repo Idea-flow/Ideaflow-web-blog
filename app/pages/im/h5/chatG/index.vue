@@ -52,7 +52,8 @@ const loadMessages = async () => {
       imStore.updateGroupMessages(currentChat.value.id, messageList)
     }
   } catch (error) {
-    console.error('获取消息失败:', error)
+    const errorMessage = error instanceof Error ? error.message : String(error)
+    console.error(`获取消息失败: ${errorMessage}`)
   }
 }
 
@@ -95,7 +96,8 @@ const handleSend = async (content: string, type: number) => {
       imStore.updateGroupRecentChatList(currentChat.value.id, sendMessageRes.value.data.createTime, sendMessageRes.value.data.sendNickName+": "+sendMessageRes.value.data.content,sendMessageRes.value.data.type)
     }
   } catch (error) {
-    console.error('发送消息失败:', error)
+    const errorMessage = error instanceof Error ? error.message : String(error)
+    console.error(`发送消息失败: ${errorMessage}`)
   }
 }
 </script>

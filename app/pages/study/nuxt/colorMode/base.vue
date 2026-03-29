@@ -18,9 +18,11 @@
 
 <script setup>
 const colorMode = useColorMode()
-// colorMode.value == 'dark' ? 'dark' : 'light'
-console.log("colorMode.preference:,",colorMode.preference)
-console.log("colorMode.value:",colorMode.value)
+
+/**
+ * 该演示页仅用于绑定颜色模式状态，变量保留用于模板与调试。
+ */
+void colorMode
 </script>
 
 <style>

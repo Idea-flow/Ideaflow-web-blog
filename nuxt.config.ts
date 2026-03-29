@@ -57,6 +57,7 @@ export default defineNuxtConfig({
     // '/im/h5/**': { ssr: false }, //只进行客户端渲染
     // '/im/web/**': { ssr: false }, //只进行客户端渲染
     '/im/**': { ssr: false }, //只进行客户端渲染
+    '/study/nuxt/colorMode/**': { ssr: false }, // 颜色模式演示页仅在客户端渲染，避免开发态路由切换报错
     // '/article/**': { ssr: false }, //只进行客户端渲染
     '/login/socialLogin2': { ssr: false }, //只进行客户端渲染
     '/login/socialLogin': { ssr: false }, //只进行客户端渲染
@@ -96,6 +97,7 @@ export default defineNuxtConfig({
       appUrl: process.env.APP_URL, // 前端公开站点地址
       googleAdsenseClient: process.env.NUXT_PUBLIC_GOOGLE_ADSENSE_CLIENT || 'ca-pub-1870872898412136',
       googleAdsenseHomeSlot: process.env.NUXT_PUBLIC_GOOGLE_ADSENSE_HOME_SLOT || '9250379418',
+      enableDevAdsense: process.env.NUXT_PUBLIC_ENABLE_DEV_ADSENSE === 'true',
     },
   },
   //

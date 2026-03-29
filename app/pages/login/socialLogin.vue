@@ -7,12 +7,25 @@ const appStore = useAppStore()
 const route = useRoute()
 const loading = ref(false)
 
+/**
+ * 将未知错误安全转换为字符串，避免 Nuxt 开发态日志序列化失败。
+ */
+function getErrorMessage(error: unknown): string {
+  return error instanceof Error ? error.message : String(error)
+}
+
+/**
+ * 从当前地址中读取指定查询参数。
+ */
 function getUrlValue(key: string): string {
   const url = new URL(decodeURIComponent(location.href))
   return url.searchParams.get(key) ?? ''
 }
 // http://localhost:3005/login/socialLogin?type=100&code=64e014f1254e01b9e946&state=c3afa32a014a6db1d341ec9d6cf9c692
 // 尝试登录: 当账号已经绑定，socialLogin会直接获得token
+/**
+ * 执行社交登录流程，并在成功后写入用户信息与令牌。
+ */
 const tryLogin = async () => {
   if (loading.value) return
   loading.value = true
@@ -28,13 +41,13 @@ const tryLogin = async () => {
     }
 
     // 打印所有参数和完整URL
-    console.log('tryLogin parameters:', {
+    console.log(`tryLogin parameters: ${JSON.stringify({
       type,
       redirect,
       code,
       state,
       fullUrl: route.fullPath
-    })
+    })}`)
   //   {type: '', redirect: '', code: '98cf79572bb30cff7c57', state: '2abf765e6da00c5ba0e7ea32ada03ceb', fullUrl: '/login/socialLogin?code=98cf79572bb30cff7c57&state=2abf765e6da00c5ba0e7ea32ada03ceb'}
   // {type: '100', redirect: '/', code: '43a7133803a566f7e4c2', state: 'b53bef5bcd32fd8592109e68a37c3e57', fullUrl: '/login/socialLogin?type=100%26redirect=/&code=43a7…a566f7e4c2&state=b53bef5bcd32fd8592109e68a37c3e57'}
 
@@ -60,9 +73,10 @@ const tryLogin = async () => {
       // 登录失败
       MyMessage.error(data.value?.msg || '社交登录失败，请稍后重试', 2000)
     }
-  } catch (err: any) {
-    console.error('Social login error:', err)
-    MyMessage.error(err?.message || '社交登录失败，请稍后重试', 3000)
+  } catch (err: unknown) {
+    const errorMessage = getErrorMessage(err)
+    console.error(`Social login error: ${errorMessage}`)
+    MyMessage.error(errorMessage || '社交登录失败，请稍后重试', 3000)
   } finally {
     loading.value = false
   }

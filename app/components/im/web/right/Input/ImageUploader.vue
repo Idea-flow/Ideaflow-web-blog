@@ -95,7 +95,8 @@ const handleFileUpload = async (file: File) => {
     const { data: createFileres } = await createFile(fileVo)
     // console.log("handleFileUpload:response:", createFileres.value.data)
   } catch (error) {
-    console.error('上传失败:', error)
+    const errorMessage = error instanceof Error ? error.message : String(error)
+    console.error(`上传失败: ${errorMessage}`)
     alert('图片上传失败，请重试')
   }
 }

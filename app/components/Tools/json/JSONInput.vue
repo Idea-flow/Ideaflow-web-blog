@@ -73,7 +73,8 @@ const pasteFromClipboard = async () => {
     localValue.value = text
     emit('update:modelValue', text)
   } catch (err) {
-    console.error('无法从剪贴板读取:', err)
+    const errorMessage = err instanceof Error ? err.message : String(err)
+    console.error(`无法从剪贴板读取: ${errorMessage}`)
   }
 }
 

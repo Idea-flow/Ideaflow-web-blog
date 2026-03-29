@@ -23,7 +23,8 @@ async function onVideoLoad(event: Event) {
     try {
       await video.play();
     } catch (error) {
-      console.log('自动播放失败:', error);
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      console.log(`自动播放失败: ${errorMessage}`);
     }
   }
 }

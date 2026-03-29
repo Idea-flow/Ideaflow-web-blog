@@ -11,6 +11,9 @@ const pageNo = ref(1)
 const pageSize = ref(9)
 
 // 获取文章列表数据
+/**
+ * 拉取当前分页的文章列表，并更新列表与总数状态。
+ */
 const fetchArticles = async () => {
   try {
     const { data } = await getArticlePage({
@@ -24,7 +27,8 @@ const fetchArticles = async () => {
       // console.info('获取文章列表数据:',JSON.stringify( articles.value))
     }
   } catch (error) {
-    console.error('获取文章列表失败:', error)
+    const errorMessage = error instanceof Error ? error.message : String(error)
+    console.error(`获取文章列表失败: ${errorMessage}`)
   }
 }
 
@@ -32,6 +36,9 @@ const fetchArticles = async () => {
 await fetchArticles()
 
 // 页码改变事件处理
+/**
+ * 在分页变更后重新获取数据并滚动到列表顶部。
+ */
 const handlePageChange = async (page: number) => {
   pageNo.value = page
   await fetchArticles() // 获取新页面数据

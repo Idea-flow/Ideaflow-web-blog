@@ -10,7 +10,7 @@
             :key="theme.value"
             class="px-4 py-2 rounded-lg bg-neutral hover:bg-neutral-hover transition-colors duration-300"
             :class="{ 'ring-2 ring-primary': $colorMode.preference === theme.value }"
-            @click="() => setTheme(theme.value)"
+            @click="setTheme(theme.value)"
         >
           {{ theme.icon }} {{ theme.label }}
         </button>
@@ -112,17 +112,22 @@
 </template>
 
 <script setup lang="ts">
-import { useColorMode } from '#imports'
-
 const colorMode = useColorMode()
 
+/**
+ * 主题演示页中可切换的主题列表。
+ */
 const themes = [
   { value: 'light', label: '亮色主题', icon: '🌞' },
   { value: 'dark', label: '暗色主题', icon: '🌙' },
-  { value: 'ocean', label: '海洋主题', icon: '🌊' },
+  { value: 'autumn', label: '秋季主题', icon: '🍁' },
+  { value: 'winter', label: '冬季主题', icon: '❄️' },
   { value: 'myCustom', label: '自定义主题', icon: '🎨' }
 ]
 
+/**
+ * 切换当前颜色模式主题。
+ */
 const setTheme = (theme: string) => {
   colorMode.preference = theme
 }

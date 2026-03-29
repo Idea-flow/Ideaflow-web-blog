@@ -31,7 +31,8 @@ const fetchArticles = async () => {
       // console.info('获取文章列表数据:',JSON.stringify( articles.value))
     }
   } catch (error) {
-    console.error('获取文章列表失败:', error)
+    const errorMessage = error instanceof Error ? error.message : String(error)
+    console.error(`获取文章列表失败: ${errorMessage}`)
   }
 }
 

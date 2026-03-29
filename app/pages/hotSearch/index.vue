@@ -43,6 +43,9 @@ const linuxdoHotSearchList = ref<HotSearchItem[]>([]);
 const toutiaoHotSearchList = ref<HotSearchItem[]>([]);
 
 // 修改fetchHotSearch方法
+/**
+ * 拉取首页所有平台的热搜数据，并分别写入对应列表状态。
+ */
 const fetchHotSearch = async () => {
   try {
     const [
@@ -99,7 +102,8 @@ const fetchHotSearch = async () => {
     }
   }
   catch (error) {
-    console.error("获取热搜数据失败:", error);
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    console.error(`获取热搜数据失败: ${errorMessage}`);
   }
 }
 
@@ -109,6 +113,9 @@ await fetchHotSearch();
 
 
 // 统一的热搜刷新方法
+/**
+ * 按平台刷新单个热搜列表。
+ */
 const fetchHotSearchByPlatform = async (platform: string) => {
   try {
     isRefreshing.value = true
@@ -141,7 +148,8 @@ const fetchHotSearchByPlatform = async (platform: string) => {
         console.error('未知的平台类型');
     }
   } catch (error) {
-    console.error(`获取${platform}热搜数据失败:`, error);
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    console.error(`获取${platform}热搜数据失败: ${errorMessage}`);
   } finally {
     isRefreshing.value = false
   }
@@ -160,6 +168,9 @@ const fetchToutiaoHotSearch = () => fetchHotSearchByPlatform('toutiao');
 const isRefreshing = ref(false)
 
 // 新增刷新所有热搜的方法
+/**
+ * 重新拉取全部热搜列表，并维护全局刷新状态。
+ */
 const refreshAllHotSearch = async () => {
   isRefreshing.value = true
   try {

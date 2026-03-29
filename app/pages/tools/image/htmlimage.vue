@@ -79,7 +79,8 @@ const downloadImage = async (url: string, filename: string) => {
     document.body.removeChild(link);
     URL.revokeObjectURL(objectUrl);
   } catch (error) {
-    console.error('下载图片失败:', error);
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    console.error(`下载图片失败: ${errorMessage}`);
   }
 };
 
@@ -106,7 +107,8 @@ const fetchImgInfo = async () => {
       htmlImgInfoContent.value = processedImages;
       showTypeFilter.value = processedImages.length > 0;
     } catch (error) {
-      console.error('解析图片数据失败:', error);
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      console.error(`解析图片数据失败: ${errorMessage}`);
     }
   }
 };

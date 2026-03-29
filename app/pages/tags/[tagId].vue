@@ -25,7 +25,8 @@ const fetchArticles = async (page = 1) => {
       total.value = data.value.data.total
     }
   } catch (error) {
-    console.error('获取文章列表失败:', error)
+    const errorMessage = error instanceof Error ? error.message : String(error)
+    console.error(`获取文章列表失败: ${errorMessage}`)
   }
 }
 

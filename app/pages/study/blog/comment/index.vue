@@ -23,7 +23,8 @@ const fetchComments = async () => {
     })
     return data
   } catch (error) {
-    console.error('获取评论列表失败：', error)
+    const errorMessage = error instanceof Error ? error.message : String(error)
+    console.error(`获取评论列表失败：${errorMessage}`)
     return null
   }
 }
@@ -62,7 +63,8 @@ const handleCommentSubmit = async (content: string, parentId?: number, replyToUs
       commentComponent.value?.onSubmitSuccess(data.value?.data)
     }
   } catch (error) {
-    console.error('提交评论失败：', error)
+    const errorMessage = error instanceof Error ? error.message : String(error)
+    console.error(`提交评论失败：${errorMessage}`)
   }
 }
 </script>

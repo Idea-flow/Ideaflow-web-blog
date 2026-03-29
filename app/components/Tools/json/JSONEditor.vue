@@ -237,7 +237,8 @@ const copyToClipboard = () => {
     })
     .catch(err => {
       MyMessage.error('复制失败，请重试')
-      console.error('无法复制到剪贴板:', err)
+      const errorMessage = err instanceof Error ? err.message : String(err)
+      console.error(`无法复制到剪贴板: ${errorMessage}`)
     })
 }
 const demoJson = ref({"project":"JSON Data Generator","version":2.1,"isProduction":false,"metadata":{"author":"AI助手","created":"2023-11-15T08:30:00Z","tags":["test","demo","multi\nline"],"license":null},"testCases":[{"id":1,"description":"基础类型测试","payload":{"string":"普通字符串","emptyString":"","unicode":"中文/日本語/한글/😊","number":42,"float":3.1415926,"negative":-1,"zero":0,"boolean":true,"isNull":null}},{"id":2,"description":"特殊字符测试","payload":{"specialChars":"~!@#$%^&*()_+`-=[]\\{}|;':\",./<>?","whitespace":" \t\r\n","escapeChars":"\\\"/\b\f\n\r\t"}},{"id":3,"description":"嵌套结构测试","payload":{"arrayInArray":[1,[2,[3]],["a","b"]],"objectInArray":[{"name":"Alice","age":28},{"name":"Bob","age":32}],"mixedTypes":[42,"text",null,{"key":"value"},[1,2,3]]}}],"boundaryCases":{"maxValues":{"intMax":2147483647,"bigNumber":1.7976931348623157e+308,"longString":"Lorem ipsum dolor sit amet...（此处可放长文本）"},"minValues":{"intMin":-2147483648,"smallNumber":5e-324,"emptyArray":[],"emptyObject":{}}},"formats":{"date":"2023-11-15","datetime":"2023-11-15T08:30:00+08:00","time":"14:30:00","url":"https://example.com/path?param=value#anchor","email":"user@example.com","regex":"^[a-zA-Z0-9]{8}$"},"备注":"这个JSON包含各种测试场景，包括：\n1. 多语言文本\n2. 特殊字符\n3. 各种数据类型\n4. 边界值\n5. 格式验证"})

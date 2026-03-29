@@ -26,7 +26,8 @@ const fetchArticles = async (page = 1) => {
       categoryName.value = data.value.data.list[0].categoryName
     }
   } catch (error) {
-    console.error('获取文章列表失败:', error)
+    const errorMessage = error instanceof Error ? error.message : String(error)
+    console.error(`获取文章列表失败: ${errorMessage}`)
   }
 }
 

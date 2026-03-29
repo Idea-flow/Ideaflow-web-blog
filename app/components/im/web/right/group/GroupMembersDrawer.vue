@@ -28,7 +28,8 @@ const fetchGroupMembers = async () => {
       // console.log("JSON.stringify(members.value)",JSON.stringify(members.value))
     }
   } catch (error) {
-    console.error('获取群成员失败:', error)
+    const errorMessage = error instanceof Error ? error.message : String(error)
+    console.error(`获取群成员失败: ${errorMessage}`)
   }
 }
 

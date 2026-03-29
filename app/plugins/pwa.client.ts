@@ -48,7 +48,8 @@ export default defineNuxtPlugin(() => {
     }
 
     navigator.serviceWorker.register('/sw.js').catch((error) => {
-      console.error('[PWA] Service Worker 注册失败', error)
+      const errorMessage = error instanceof Error ? error.message : String(error)
+      console.error(`[PWA] Service Worker 注册失败: ${errorMessage}`)
     })
   }
 
