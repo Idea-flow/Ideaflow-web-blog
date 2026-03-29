@@ -3,9 +3,8 @@
  * 用于替代 SEO 模块的 robots 生成功能，统一声明爬虫访问策略与 sitemap 地址。
  */
 export default defineEventHandler((event) => {
-  const config = useRuntimeConfig()
   const requestUrl = getRequestURL(event)
-  const siteUrl = (config.public.appUrl || requestUrl.origin).replace(/\/$/, '')
+  const siteUrl = requestUrl.origin.replace(/\/$/, '')
 
   /**
    * robots 文本内容由站点根地址和禁止抓取目录组成。

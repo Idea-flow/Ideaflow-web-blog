@@ -5,7 +5,7 @@
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig()
   const requestUrl = getRequestURL(event)
-  const siteUrl = (config.public.appUrl || requestUrl.origin).replace(/\/$/, '')
+  const siteUrl = requestUrl.origin.replace(/\/$/, '')
 
   /**
    * 站点固定页面列表。
@@ -55,12 +55,13 @@ export default defineEventHandler(async (event) => {
   }
 
   /**
-   * 将任意 loc 转换为完整站点地址。
-   * 兼容后端直接返回绝对地址或仅返回站内相对路径两种情况。
+   * 将任意 loc 转换为当前前端站点地址。
+   * 即使后端返回了绝对地址，也只保留 path/query/hash，统一映射到当前请求域名。
    */
   const toAbsoluteUrl = (loc: string) => {
     if (/^https?:\/\//.test(loc)) {
-      return loc
+      const parsedUrl = new URL(loc)
+      return `${siteUrl}${parsedUrl.pathname}${parsedUrl.search}${parsedUrl.hash}`
     }
 
     return `${siteUrl}${loc.startsWith('/') ? loc : `/${loc}`}`

@@ -5,16 +5,23 @@
   font-family: 'poetize-font', sans-serif;
   div.#{$theme-name} {
     // 行内
-    --md-theme-code-inline-color: #{if($isDark, #a78bfa,#a78bfa)};;
+    --md-theme-code-inline-color: #a78bfa;
 
-    // 行内
-    //--md-theme-code-inline-color: #{if($isDark, #e06c75, #d63200)};
-    --md-theme-code-inline-bg-color: #{if($isDark, #1a1a1a, #f8f8f8)};
+    @if $isDark {
+      --md-theme-code-inline-bg-color: #1a1a1a;
 
-    // 块
-    --md-theme-code-block-color: #{if($isDark, #999, #747384)};
-    // 背景
-    --md-theme-code-block-bg-color: #{if($isDark, #1a1a1a, #f8f8f8)};
+      // 块
+      --md-theme-code-block-color: #999;
+      // 背景
+      --md-theme-code-block-bg-color: #1a1a1a;
+    } @else {
+      --md-theme-code-inline-bg-color: #f8f8f8;
+
+      // 块
+      --md-theme-code-block-color: #747384;
+      // 背景
+      --md-theme-code-block-bg-color: #f8f8f8;
+    }
     // 顶部背景
     --md-theme-code-before-bg-color: var(--md-theme-code-block-bg-color);
     // 圆角

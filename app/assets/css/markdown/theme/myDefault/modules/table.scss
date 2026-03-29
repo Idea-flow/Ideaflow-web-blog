@@ -2,10 +2,17 @@
 
 @mixin table-vars($isDark) {
   div.#{$theme-name} {
-    // 边框
-    --md-theme-table-td-border-color: #{if($isDark, #2d2d2d, #dfe2e5)};
-    // 斑马条纹
-    --md-theme-table-stripe-color: #{if($isDark, #0c0c0c, #f6f8fa)};
+    @if $isDark {
+      // 边框
+      --md-theme-table-td-border-color: #2d2d2d;
+      // 斑马条纹
+      --md-theme-table-stripe-color: #0c0c0c;
+    } @else {
+      // 边框
+      --md-theme-table-td-border-color: #dfe2e5;
+      // 斑马条纹
+      --md-theme-table-stripe-color: #f6f8fa;
+    }
   }
 }
 
@@ -32,4 +39,3 @@ div.#{$theme-name} {
     }
   }
 }
-

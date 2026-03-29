@@ -4,18 +4,30 @@
 @mixin code-vars($isDark) {
   font-family: 'poetize-font', sans-serif;
   div.#{$theme-name} {
-    // 行内
-    --md-theme-code-inline-color: #{if($isDark, #e06c75, #d63200)};
-    --md-theme-code-inline-bg-color: #{if($isDark, #1a1a1a, #f8f8f8)};
+    @if $isDark {
+      // 行内
+      --md-theme-code-inline-color: #e06c75;
+      --md-theme-code-inline-bg-color: #1a1a1a;
+
+      // 块
+      --md-theme-code-block-color: #999;
+
+      // 背景
+      --md-theme-code-block-bg-color: #1a1a1a;
+    } @else {
+      // 行内
+      --md-theme-code-inline-color: #d63200;
+      --md-theme-code-inline-bg-color: #f8f8f8;
+
+      // 块
+      --md-theme-code-block-color: #747384;
+
+      // 背景
+      --md-theme-code-block-bg-color: #f8f8f8;
+    }
 
     // 圆角
     --md-theme-code-inline-radius: 2px;
-
-    // 块
-    --md-theme-code-block-color: #{if($isDark, #999, #747384)};
-
-    // 背景
-    --md-theme-code-block-bg-color: #{if($isDark, #1a1a1a, #f8f8f8)};
     // 顶部背景
     --md-theme-code-before-bg-color: var(--md-theme-code-block-bg-color);
     // 圆角

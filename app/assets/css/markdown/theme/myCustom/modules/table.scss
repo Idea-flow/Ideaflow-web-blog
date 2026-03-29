@@ -3,7 +3,11 @@ $theme-name: 'myCustom-theme';
 @mixin table-vars($isDark) {
   #{$theme-name} {
     // 斑马条纹
-    --md-theme-table-stripe-color: #{if($isDark, #0c0c0c, #fafafa)};
+    @if $isDark {
+      --md-theme-table-stripe-color: #0c0c0c;
+    } @else {
+      --md-theme-table-stripe-color: #fafafa;
+    }
   }
 }
 
@@ -69,6 +73,5 @@ div.#{$theme-name} {
     }
   }
 }
-
 
 

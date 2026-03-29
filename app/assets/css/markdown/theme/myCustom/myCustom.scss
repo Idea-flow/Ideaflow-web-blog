@@ -14,7 +14,11 @@
 
 @mixin theme-vars($isDark) {
   div.#{$theme-name} {
-    --md-theme-color: #{if($isDark, #c9d1d9, #222)};
+    @if $isDark {
+      --md-theme-color: #c9d1d9;
+    } @else {
+      --md-theme-color: #222;
+    }
   }
 }
 
@@ -27,5 +31,4 @@
 .#{$prefix}-dark {
   @include theme-vars(true);
 }
-
 

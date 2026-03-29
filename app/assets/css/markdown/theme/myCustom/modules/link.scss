@@ -4,12 +4,21 @@
 // 定义链接主题变量
 @mixin link-vars($isDark) {
   div.#{$theme-name} {
-    // 链接基础颜色
-    --md-theme-link-color: #{if($isDark, #a78bfa, #8b5cf6)};
-    // 链接悬停颜色
-    --md-theme-link-hover-color: #{if($isDark, #c4b5fd, #7c3aed)};
-    // 链接下划线颜色
-    --md-theme-link-underline-color: #{if($isDark, rgba(167, 139, 250, 0.3), rgba(139, 92, 246, 0.3))};
+    @if $isDark {
+      // 链接基础颜色
+      --md-theme-link-color: #a78bfa;
+      // 链接悬停颜色
+      --md-theme-link-hover-color: #c4b5fd;
+      // 链接下划线颜色
+      --md-theme-link-underline-color: rgba(167, 139, 250, 0.3);
+    } @else {
+      // 链接基础颜色
+      --md-theme-link-color: #8b5cf6;
+      // 链接悬停颜色
+      --md-theme-link-hover-color: #7c3aed;
+      // 链接下划线颜色
+      --md-theme-link-underline-color: rgba(139, 92, 246, 0.3);
+    }
   }
 }
 

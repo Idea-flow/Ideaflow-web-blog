@@ -2,7 +2,11 @@
 
 @mixin heading-vars($isDark) {
   div.#{$theme-name} {
-    --md-theme-heading-color: #{if($isDark, #999, #273849)};
+    @if $isDark {
+      --md-theme-heading-color: #999;
+    } @else {
+      --md-theme-heading-color: #273849;
+    }
     --md-theme-heading-2-border: 1px solid var(--md-theme-border-color);
   }
 }
