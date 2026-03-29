@@ -71,9 +71,6 @@ const handleClick = (item: string) => {
               <BaseMenuItem @click="handleClick('/tools/image/base64')">
                 base64
               </BaseMenuItem>
-<!--              <BaseMenuItem @click="handleClick('/tools/image/htmlimage')">-->
-<!--                网页图片提取-->
-<!--              </BaseMenuItem>-->
             </BaseMenuSubMenu>
 
           </BaseMenu>
